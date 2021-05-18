@@ -1,0 +1,370 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*html, body { height: 100%; }*/
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+p, ul{
+    font-family: 'Ubuntu', sans-serif;
+    color:#546170;
+}
+
+/* Background Colors */
+.bg-gray{
+    background-color: #f6f6f6;
+}
+.bg-gray-dark{
+    background-color:#222D39;
+}
+.bg-white{
+    background-color: #fff;
+}
+.bg-blue{
+    background-color: #31589A;
+}
+.bg-sea-blue{
+    background-color: #31DC9A;
+}
+.bg-soft-blue{
+    background-color:#F6F8FB;
+}
+
+/*========================*/
+
+/* Text Colors */
+.text-black{
+    color:#546170;
+}
+
+.text-gray{
+    color: #828282;
+}
+
+.text-white{
+    color:#fff;
+}
+
+.text-blue{
+    color: #31589A;
+}
+
+.text-soft-white{
+    color:#FAFAFA;
+}
+/*==================*/
+
+/* Font Weight */
+.font-weight-200{
+    font-weight:200;
+}
+.font-weight-400{
+    font-weight:400;
+}
+.font-weight-500{
+    font-weight:500;
+}
+.font-weight-600{
+    font-weight:600;
+}
+.font-weight-700{
+    font-weight:700!important;
+}
+.font-weight-900{
+    font-weight:900;
+}
+/*==============*/
+
+/* Font Sizes */
+.roboto{
+    font-family: 'Roboto', sans-serif;
+}
+.size12 {
+    font-size: 12px;
+}
+.size13 {
+    font-size: 13px;
+}
+.size14 {
+    font-size: 14px;
+}
+.size15 {
+    font-size: 15px;
+}
+.size16 {
+    font-size: 16px!important;
+}
+.size17 {
+    font-size: 17px;
+}
+.size18 {
+    font-size: 18px;
+}
+.size19 {
+    font-size: 19px;
+}
+.size20 {
+    font-size: 20px;
+}
+.size21 {
+    font-size: 21px;
+}
+.size24 {
+    font-size: 24px;
+}
+.size25 {
+    font-size: 25px;
+}
+.size28 {
+    font-size: 28px;
+}
+.size34 {
+    font-size: 34px!important;
+}
+.size35 {
+    font-size: 35px!important;
+}
+.size38 {
+    font-size: 38px!important;
+}
+.size50 {
+    font-size: 50px;
+}
+.size51 {
+    font-size: 51px;
+}
+/*==============*/
+
+/* Letter Spacing */
+.letter-spacing-056{
+    letter-spacing: 0.56px!important;
+}
+.letter-spacing-053{
+    letter-spacing: 0.53px;
+}
+.letter-spacing-054{
+    letter-spacing: 0.54px;
+}
+.letter-spacing-027{
+    letter-spacing: 0.27px;
+}
+.letter-spacing-1-03{
+    letter-spacing: 1.03px;
+}
+/*=================*/
+
+/* Line Height */
+.line-height-41{
+    line-height: 41px!important;
+}
+.line-height-45{
+    line-height: 45px!important;
+}
+.line-height-46{
+    line-height: 46px!important;
+}
+.line-height-22{
+    line-height: 22px;
+}
+.line-height-24{
+    line-height: 24px;
+}
+.line-height-20{
+    line-height: 20px;
+}
+.line-height-19{
+    line-height: 19px!important;
+}
+/*==============*/
+
+/* Line Height */
+.border-radius-12{
+    border-radius:12px;
+}
+/*============*/
+
+/* Margins */
+.mt-35n{
+    margin-top: -35px;
+}
+.mt-5n{
+    margin-top: -3rem;
+}
+.mt-100{
+    margin-top: 100px;
+}
+.mt-150{
+    margin-top: 150px;
+}
+.mt-200{
+    margin-top: 200px;
+}
+.mt-250{
+    margin-top: 250px;
+}
+.mb-150{
+    margin-bottom: 150px;
+}
+.mb-100{
+    margin-bottom: 100px;
+}
+.mb-50{
+    margin-bottom: 50px;
+}
+/*==================*/
+
+/* Paddings */
+.pt-50{
+    padding-top: 50px;
+}
+.pt-150{
+    padding-top: 150px;
+}
+.pb-100{
+    padding-bottom: 100px;
+}
+.pb-50{
+    padding-bottom: 50px;
+}
+/*===============*/
+
+/* Height */
+.h-100px{
+    height: 100px!important;
+}
+/*=============*/
+
+/* Header */
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 0px 3px 1px #282d50;
+}
+.main-menu-list .nav-item .nav-link{
+    font-weight: 400;
+}
+.iniciar-sesion .nav-item.dropdown{
+    background-color: #31DC9A;
+    border-radius: 1px;
+}
+
+.iniciar-sesion .nav-item.dropdown #navbarDropdownMenuLink{
+    color: #fff;
+}
+.iniciar-sesion .dropdown-toggle::after{
+    display: none;
+}
+.iniciar-sesion .nav-item.dropdown .dropdown-menu{
+    padding: 0;
+    margin: 0;
+}
+.iniciar-sesion .nav-item.dropdown .dropdown-menu .dropdown-item {
+    padding: 10px 1.2rem;
+    color:#7C8DAA;
+    font-size:16px;
+}
+.iniciar-sesion .nav-item.dropdown .dropdown-menu .dropdown-item.active, .iniciar-sesion .nav-item.dropdown .dropdown-menu .dropdown-item:active{
+    background-color: #31589a;
+}
+.item-smartsuite::before{
+    content:"";
+    background-image:url(./assets/images/smartsuit_mini.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0px 9px;
+    margin-right: 5px;
+}
+.item-smartsale::before{
+    content:"";
+    background-image:url(./assets/images/1sales.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0px 9px;
+    margin-right: 10px;
+}
+.item-mobileforms::before{
+    content:"";
+    background-image:url(./assets/images/2mobileforms.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0px 9px;
+    margin-right: 10px;
+}
+.item-onecheck::before{
+    content:"";
+    background-image:url(./assets/images/3onecheck.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0px 9px;
+    margin-right: 10px;
+}
+.item-ontime::before{
+    content:"";
+    background-image:url(./assets/images/4ontime.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0px 9px;
+    margin-right: 10px;
+}
+.item-caretask::before{
+    content:"";
+    background-image:url(./assets/images/5caretask.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0px 9px;
+    margin-right: 10px;
+}
+.item-intrack::before{
+    content:"";
+    background-image:url(./assets/images/6intrack.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0px 9px;
+    margin-right: 10px;
+}
+a:-webkit-any-link:focus-visible {
+    outline-offset: 0;
+    outline: none;
+}
+/*===========*/
+
+/* Primera Sección */
+.enigma-background{
+    background-image: url(./assets/images/bg_enigma.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.nav-pills .nav-link{
+    opacity: .3;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    opacity: 1;
+    background-color: transparent;
+}
+
+.enigma .seccion4{
+    background-image: url(./assets/images/bg_seccion4.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 50px 0 40px;
+}
+
+.seccion6 .img-aplicaciones{
+    position: absolute;
+    top: -140px;
+}
+
+.card-zoom:hover {
+    transition: transform .3s;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer ul{
+    list-style-type: none;
+    padding-inline-start: 0;
+}
+/*==============*/
