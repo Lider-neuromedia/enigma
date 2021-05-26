@@ -1,331 +1,217 @@
 <div class="enigma">
-  <div class="enigma-background seccion1">
-      <div class="container">
-          <div class="row">
-              <div class="col-sm-12 pt-5 pb-5">
-                  <p class="size28 text-white text-center pb-4">Genera valor a los procesos de tu negocio</p>
-                  <p class="size51 text-white text-center pb-3 font-weight-700">Optimiza</p>
-                  <p class="size38 text-white text-center letter-spacing-056 line-height-46">A través de soluciones de gestión<br> móvil en la nube</p>
-              </div>
-          </div>
-      </div>
-  </div>
+  <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'500px' }"></ngx-skeleton-loader>
+  <ng-container *ngIf="data.banner">
+    <div *ngIf="!loader" class="enigma-background seccion1" style="background-image: url('{{ data.banner.imagen }}')">
+        <div class="container pt-5 pb-5">
+            <div class="row pt-5 pb-5">
+                <div class="col-sm-12 pt-5 pb-5">
+                    <span [innerHtml]="data.banner.texto | safeHtml: 'html'"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </ng-container>
   <div class="container seccion2">
-    <div class="row pt-5 pb-5">
-      <div class="col-md-3">
-        <mat-card class="card-zoom">
-          <img class="d-inline-block mb-3" src="./assets/images/icon_enigma1PNG.png" alt="Apps desarrolladas">
-          <mat-card-title class="text-black pt-2 pb-2 roboto size25 font-weight-700">+150</mat-card-title>
-          <mat-card-content>
-            <p class="size17 line-height-20 letter-spacing-054">
-              Aplicaciones<br>desarrolladas
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <div class="col-md-3">
-        <mat-card class="card-zoom">
-          <img class="d-inline-block mb-3" src="./assets/images/icon_enigma2PNG.png" alt="Apps desarrolladas">
-          <mat-card-title class="text-black pt-2 pb-2 roboto size25 font-weight-700">4 países</mat-card-title>
-          <mat-card-content>
-            <p class="size17 line-height-20 letter-spacing-054">
-              En américa donde <br>hacemos presencia
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <div class="col-md-3">
-        <mat-card class="card-zoom">
-          <img class="d-inline-block mb-3" src="./assets/images/icon_enigma3PNG.png" alt="Apps desarrolladas">
-          <mat-card-title class="text-black pt-2 pb-2 roboto size25 font-weight-700">+230</mat-card-title>
-          <mat-card-content>
-            <p class="size17 line-height-20 letter-spacing-054">
-              Clientes nacionales<br>e internacionales
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <div class="col-md-3">
-        <mat-card class="card-zoom">
-          <img class="d-inline-block mb-3" src="./assets/images/icon_enigma4PNG.png" alt="Apps desarrolladas">
-          <mat-card-title class="text-black pt-2 pb-2 roboto size25 font-weight-700">18 años</mat-card-title>
-          <mat-card-content>
-            <p class="size17 line-height-20 letter-spacing-054">
-              Garantizan nuestra<br>calidad
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </div>
+    <ngx-skeleton-loader class="d-flex pt-3 pb-5" count="4" *ngIf="loader" animation="progress" appearance="circle" [theme]="{ 'width':'100%','height':'250px','border-radius': '10px' }"></ngx-skeleton-loader>
+    <div class="row pt-5 pb-5" *ngIf="!loader">
+      <ng-container *ngFor="let metrica of data.metricas">
+        <div class="col-md-3" *ngIf="metrica.titulo">
+          <mat-card class="card-zoom mt-3 mb-3" >
+            <img class="d-inline-block mb-3" src="{{ metrica.icono }}" alt="Apps desarrolladas">
+            <mat-card-title class="text-black pt-2 pb-2 roboto size25 font-weight-700">{{metrica.titulo}}</mat-card-title>
+            <mat-card-content>
+              <span [innerHtml]="metrica.descripcion | safeHtml: 'html'"></span>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </ng-container>
     </div>
   </div>
-  <div class="seccion3 bg-soft-blue pb-5">
-    <div class="container">
-      <div class="row pt-5 pb-5">
-        <div class="col-md-6">
-          <img class="mb-4" src="../assets/images/logo_smartsuit.png" alt="SmartSuite">
-          <p class="size18 line-height-24 letter-spacing-027">Nuestras soluciones se adaptan a las necesidades de tu negocio logrando optimizar y automatizar todos los procesos. 
-          </p>
-          <div class="nav flex-column nav-pills" id="services-tabs" role="tablist" aria-orientation="vertical">
-            <div class="row">
-              <div class="col-md-6">
-                <a class="nav-link active" id="smartsales-tab" data-toggle="pill" href="#smartsales" role="tab" aria-controls="smartsales" aria-selected="true"><img src="../assets/images/smartsalesPNG.png" alt="SmartSales"></a>
-                <a class="nav-link" id="mobileforms-tab" data-toggle="pill" href="#mobileforms" role="tab" aria-controls="mobileforms" aria-selected="false"><img src="../assets/images/mobileformsPNG.png" alt="MobileForms"></a>
-                <a class="nav-link" id="onecheck-tab" data-toggle="pill" href="#onecheck" role="tab" aria-controls="onecheck" aria-selected="false"><img src="../assets/images/onecheckPNG.png" alt="OneCheck"></a>
-              </div>
-              <div class="col-md-6">
-                <a class="nav-link" id="ontime-tab" data-toggle="pill" href="#ontime" role="tab" aria-controls="ontime" aria-selected="false"><img src="../assets/images/onetimePNG.png" alt="OneTime"></a>
-                <a class="nav-link" id="caretask-tab" data-toggle="pill" href="#caretask" role="tab" aria-controls="caretask" aria-selected="false"><img src="../assets/images/caretaskPNG.png" alt="CareTask"></a>
-                <a class="nav-link" id="intrack-tab" data-toggle="pill" href="#intrack" role="tab" aria-controls="intrack" aria-selected="false"><img src="../assets/images/intraclPNG.png" alt="InTrack"></a>
+  <div class="seccion3 bg-soft-blue">
+    <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'500px' }"></ngx-skeleton-loader>
+    <div class="container" *ngIf="data.soluciones">
+        <div class="row align-items-center pt-5 pb-5" *ngIf="!loader">
+          <ng-container *ngFor="let tab of data.soluciones">
+            <div class="col-md-6">
+              <img class="mb-4" src="{{ tab.logo_general }}" alt="SmartSuite">
+              <p [innerHTML]="tab.descripcion"></p>
+              <div class="nav flex-column nav-pills" id="services-tabs" role="tablist" aria-orientation="vertical">
+                <div class="row">
+                  <div class="col-md-12 column2">
+                    <ng-container *ngFor="let linkTab of tab.soluciones_tabs; let i = index">
+                      <a class="nav-link fade" [ngClass]="{'active show': i === activePillIndex}" id="{{i}}-tab" data-toggle="pill" [attr.href]="'#'+'v-pills-'+i" role="tab" aria-controls="{{i}}" aria-selected="true"><img src="{{ linkTab.logo }}" (click)="selectPill(i)"></a>
+                    </ng-container>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+            <div class="col-md-6">
+              <div class="tab-content" id="services-tabContent">
+                <ng-container *ngFor="let linkTab of tab.soluciones_tabs; let i = index">
+                  <div class="tab-pane fade" [ngClass]="{'active show': i === activePillIndex}" id="{{i}}" role="tabpanel" aria-labelledby="{{i}}"><img class="img-fluid" src="{{ linkTab.imagen }}"></div>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
         </div>
-        <div class="col-md-6">
-          <div class="tab-content" id="services-tabContent">
-            <div class="tab-pane fade show active" id="smartsales" role="tabpanel" aria-labelledby="smartsales"><img class="img-fluid" src="../assets/images/comp1PNG.png" alt="SmartSales Image"></div>
-            <div class="tab-pane fade" id="mobileforms" role="tabpanel" aria-labelledby="mobileforms"><img class="img-fluid" src="../assets/images/comp_1_1PNG.png" alt="MobileForms Image"></div>
-            <div class="tab-pane fade" id="onecheck" role="tabpanel" aria-labelledby="onecheck"><img class="img-fluid" src="../assets/images/comp2PNG.png" alt="OneCheck Image"></div>
-            <div class="tab-pane fade" id="ontime" role="tabpanel" aria-labelledby="ontime"><img class="img-fluid" src="../assets/images/comp3PNG.png" alt="OneTime Image"></div>
-            <div class="tab-pane fade" id="caretask" role="tabpanel" aria-labelledby="caretask"><img class="img-fluid" src="../assets/images/comp4PNG.png" alt="CareTask Image"></div>
-            <div class="tab-pane fade" id="intrack" role="tabpanel" aria-labelledby="intrack"><img class="img-fluid" src="../assets/images/comp2PNG.png" alt="InTrack Image"></div>
-          </div>
-        </div>
-      </div>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="seccion4 border-radius-12">
-            <p class="text-center size38 font-weight-700 text-white letter-spacing-056 line-height-46 mb-4">¡Una solución ideal para cada desafío!</p>
-            <button class="mx-auto d-block text-blue" mat-raised-button>Comenzar ahora</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container mt-5 mb-5">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="mt-5 text-center text-black size38 font-weight-700 letter-spacing-056 line-height-46">¡Proporcionamos soluciones <br>tecnológicas de valor!</h2>
-          <p class="size18 text-center">Nuestro compromiso es ofrecerte innovación, agilidad y seguridad para que optimices los procesos de tu negocio
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="container pt-5">
-      <div class="row">
-        <div class="col-md-4">
-          <mat-card class="solucion card-zoom">
-            <div class="row">
-              <div class="col-md-4">
-                <img class="d-inline-block float-left img-fluid mr-3" src="./assets/images/icon_enigma5PNG.png" alt="Soluciones">
-              </div>
-              <div class="col-md-8 my-auto pl-0">
-                <p class="size18">
-                  Adquieres una solución rápida y fácil de implementar.
-                </p>
-              </div>
-            </div>
-          </mat-card>
-        </div>
-        <div class="col-md-4 mt-5n">
-          <mat-card class="solucion card-zoom">
-            <div class="row">
-              <div class="col-md-4">
-                <img class="d-inline-block float-left img-fluid mr-3" src="./assets/images/icon_enigma6PNG.png" alt="Automatiza">
-              </div>
-              <div class="col-md-8 my-auto pl-0">
-                <p class="size18">
-                  Automatiza todos los procesos de campo de tu negocio.
-                </p>
-              </div>
-            </div>
-          </mat-card>
-        </div>
-        <div class="col-md-4">
-          <mat-card class="solucion card-zoom">
-            <div class="row">
-              <div class="col-md-4">
-                <img class="d-inline-block float-left img-fluid mr-3" src="./assets/images/icon_enigma7PNG.png" alt="Automatiza">
-              </div>
-              <div class="col-md-8 my-auto pl-0">
-                <p class="size18">
-                  Cuenta con la posibilidad de trabajar off-line.
-                </p>
-              </div>
-            </div>
-          </mat-card>
-        </div>
-      </div>
-      <div class="row mt-5">
-        <div class="col-md-4">
-          <mat-card class="solucion card-zoom">
-            <div class="row">
-              <div class="col-md-4">
-                <img class="d-inline-block float-left img-fluid mr-3" src="./assets/images/icon_enigma8PNG.png" alt="Soluciones">
-              </div>
-              <div class="col-md-8 my-auto pl-0">
-                <p class="size18">
-                  Nuestras soluciones son gráficas e intuitivas.
-                </p>
-              </div>
-            </div>
-          </mat-card>
-        </div>
-        <div class="col-md-4 mt-5n">
-          <mat-card class="solucion card-zoom">
-            <div class="row">
-              <div class="col-md-4">
-                <img class="d-inline-block float-left img-fluid mr-3" src="./assets/images/icon_enigma9PNG.png" alt="Automatiza">
-              </div>
-              <div class="col-md-8 my-auto pl-0">
-                <p class="size18">
-                  Obtén actualizaciones de información automaticas.
-                </p>
-              </div>
-            </div>
-          </mat-card>
-        </div>
-        <div class="col-md-4">
-          <mat-card class="solucion card-zoom">
-            <div class="row">
-              <div class="col-md-4">
-                <img class="d-inline-block float-left img-fluid mr-3" src="./assets/images/icon_enigma10PNG.png" alt="Automatiza">
-              </div>
-              <div class="col-md-8 my-auto pl-0">
-                <p class="size18">
-                  Solo pagas por lo que usas y sin contrato de permanencia.
-                </p>
-              </div>
-            </div>
-          </mat-card>
-        </div>
-      </div>
-      <div class="row mt-5">
-        <div class="col-md-12">
-          <h2 class="size38 font-weight-700 text-blue text-center mt-4">Transforma tus procesos</h2>
-          <button mat-raised-button class="size18 font-weight-400 text-white bg-sea-blue mx-auto d-block">¡Hablemos de la solución que necesitas!</button>
+  </div>
+  <div class="container mt-5">
+    <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'200px' }"></ngx-skeleton-loader>
+    <div class="row" *ngIf="data.solucion_ideal">
+      <div class="col-md-12" *ngIf="!loader">
+        <div class="seccion4 border-radius-12 text-center" style="background-image: url('{{ data.solucion_ideal.imagen_de_fondo }}')">
+          <p class="text-center size38 font-weight-700 text-white letter-spacing-056 line-height-46 mb-4">{{ data.solucion_ideal.titulo }}</p>
+          <a class="text-blue size18 pt-2 pb-2 pr-5 pl-5" mat-raised-button href="data.solucion_ideal.url_del_boton">{{ data.solucion_ideal.texto_del_boton }}</a>
         </div>
       </div>
     </div>
   </div>
-  <div class="seccion5 container mt-5 mb-5">
-    <div class="row">
-      <div class="col-md-12 mb-5">
-        <h2 class="text-black size34 line-height-41 font-weight-700 text-center">Contamos con todo un equipo de expertos que garantizan soluciones digitales personalizadas</h2>
-      </div>
-      <div class="col-md-6">
-        <p class="font-weight-400 size18 letter-spacing-027 text-black mb-4">Un espacio creativo que potencializa a nuestro equipo.<br>
-          Aquí generamos las soluciones móviles que transforman los  procesos empresariales de la región.
-        </p>
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card-teams card-zoom">
-              <img class="mx-auto d-block mb-3" src="./assets/images/icon_enigma11PNG.png" alt="Ingenieros">
-              <p class="text-center text-blue font-weight-500 size18 mb-0">54</p>
-              <p class="text-center size16">Ingenieros</p>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card-teams card-zoom">
-              <img class="mx-auto d-block mb-3" src="./assets/images/icon_enigma12PNG.png" alt="Diseñadores">
-              <p class="text-center text-blue font-weight-500 size18 mb-0">26</p>
-              <p class="text-center size16">Diseñadores</p>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card-teams card-zoom">
-              <img class="mx-auto d-block mb-3" src="./assets/images/icon_enigma13PNG.png" alt="Tecnólogos">
-              <p class="text-center text-blue font-weight-500 size18 mb-0">45</p>
-              <p class="text-center size16">Tecnólogos</p>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card-teams card-zoom">
-              <img class="mx-auto d-block mb-3" src="./assets/images/icon_enigma14PNG.png" alt="Especialistas">
-              <p class="text-center text-blue font-weight-500 size18 mb-0">3</p>
-              <p class="text-center size16">Especialistas</p>
-            </div>
-          </div>
+    <div class="container mt-5 mb-0">
+      <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'200px' }"></ngx-skeleton-loader>
+      <ngx-skeleton-loader class="d-flex pt-3 pb-5" count="3" *ngIf="loader" animation="progress" appearance="circle" [theme]="{ 'width':'100%','height':'250px','border-radius': '10px' }"></ngx-skeleton-loader>
+      <div class="row"  *ngIf="!loader">
+        <div class="offset-md-2 col-md-8" *ngIf="data.nuestro_compromiso">
+          <h2 class="mt-5 text-center text-black size38 font-weight-700 letter-spacing-056 line-height-46">{{ data.nuestro_compromiso.titulo }}</h2>
+          <p class="size18 text-center" [innerHTML]="data.nuestro_compromiso.descripcion"></p>
         </div>
-      </div>
-      <div class="col-md-6">
-        <iframe width="100%" height="315" [src]="urlSaneada" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
-  </div>
-  <div class="seccion6 bg-soft-blue pt-5 pb-5 mt-150">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <img class="img-fluid img-aplicaciones" src="./assets/images/comp2PNG.png" alt="Aplicaciones móviles">
+    <div class="container pt-0">
+      <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'200px' }"></ngx-skeleton-loader>
+      <ngx-skeleton-loader class="d-flex pt-3 pb-5" count="2" *ngIf="loader" animation="progress" appearance="circle" [theme]="{ 'width':'100%','height':'250px','border-radius': '10px' }"></ngx-skeleton-loader>
+      <div class="row" *ngIf="data.nuestro_compromiso">
+        <ng-container *ngFor="let iconos of data.nuestro_compromiso.detalle_del_compromiso">
+          <div class="col-md-4 margintopN mt-3" *ngIf="!loader">
+            <mat-card class="solucion card-zoom">
+              <div class="row">
+                <div class="col-md-4">
+                  <img class="d-inline-block float-left img-fluid p-3" src="{{ iconos.icono }}" alt="Soluciones">
+                </div>
+                <div class="col-md-8 my-auto pl-0">
+                  <p class="size18 p-3" [innerHTML]="iconos.descripcion"></p>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </ng-container>
+      </div>
+      <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'200px' }"></ngx-skeleton-loader>
+      <div class="row mt-5" *ngIf="data.hablemos">
+        <div class="col-md-12 text-center" *ngIf="!loader">
+          <h2 class="size38 font-weight-700 text-blue text-center mt-4">{{ data.hablemos.titulo }}</h2>
+          <a mat-raised-button class="pt-2 pb-2 pr-4 pl-4 size16 font-weight-400 text-white bg-sea-blue" href="{{ data.hablemos.url_boton }}">{{ data.hablemos.texto_boton }}</a>
+        </div>
+      </div>
+    </div>
+    <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'400px' }"></ngx-skeleton-loader>
+    <div class="seccion5 container mt-5 mb-5" *ngIf="!loader">
+      <div class="row align-items-center" *ngIf="data.expertos">
+        <div class="col-md-12 mb-5">
+          <h2 class="text-black size34 line-height-41 font-weight-700 text-center">{{ data.expertos.titulo }}</h2>
         </div>
         <div class="col-md-6">
+          <p class="font-weight-400 size18 letter-spacing-027 text-black mb-4" [innerHTML]="data.expertos.descripcion"></p>
+          <div class="row">
+            <ng-container *ngFor="let profesional of data.expertos.profesionales">
+              <div class="col-sm pb-3">
+                <div class="card-teams card-zoom">
+                  <img class="mx-auto d-block mb-3" src="{{ profesional.icono }}" alt="Ingenieros">
+                  <p class="text-center text-blue font-weight-500 size18 mb-0">{{ profesional.numero }}</p>
+                  <p class="text-center size16">{{ profesional.texto }}</p>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="embed-responsive embed-responsive-4by3">
+            <p [innerHTML]="data.expertos.video | safeHtml: 'html'"></p>
+          </div>
+          <!-- <iframe width="100%" height="315" [src]="urlSaneada" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+        </div>
+      </div>
+    </div>
+  <div class="seccion6 bg-soft-blue mt-150" *ngIf="!loader">
+    <div class="container">
+      <div class="row align-items-center" *ngIf="data.aplicaciones_moviles">
+        <div class="col-md-6">
+          <img class="img-fluid img-aplicaciones" [src]="data.aplicaciones_moviles.imagen" alt="Aplicaciones móviles">
+        </div>
+        <div class="col-md-6 pb-3 pt-3">
           <div class="img-apps mb-4">
-            <img src="./assets/images/icon_enigma15PNG.png" alt="Apps móviles">
+            <img [src]="data.aplicaciones_moviles.icono" alt="Apps móviles" style="background:#EAB9DF;padding:12px 25px;border-radius:5px;box-shadow: 0 2px 4px 0 rgba(124, 141, 170, 0.4);">
           </div>
-          <h2 class="size38 font-weight-700 text-blue mb-4">Aplicaciones móviles</h2>
-          <p class="size18 font-weight-400"><strong>Eficientes y dinámicas para una óptima gestión de tus procesos empresariales.</strong> Estamos presentes a nivel nacional e internacional diseñando y optimizando procesos con nuestras soluciones digitales.</p>
+          <h2 class="size38 font-weight-700 text-blue mb-4">{{ data.aplicaciones_moviles.titulo }}</h2>
+          <p class="size18 font-weight-400" [innerHTML]="data.aplicaciones_moviles.descripcion | safeHtml: 'html'"></p>
           <div class="banderas">
-            <img class="img-fluid d-inline-block card-zoom" src="./assets/images/bandera-colombia.png" alt="Colombia">
-            <img class="img-fluid d-inline-block card-zoom" src="./assets/images/bandera-peru.png" alt="Perú">
-            <img class="img-fluid d-inline-block card-zoom" src="./assets/images/bandera-republica-dominicana.png" alt="Rep. Dominicana">
-            <img class="img-fluid d-inline-block card-zoom" src="./assets/images/bandera-ecuador.png" alt="Ecuador">
+            <ng-container *ngFor="let bandera of data.aplicaciones_moviles.banderas">
+              <img class="img-fluid d-inline-block card-zoom" [src]="bandera.imagen">
+            </ng-container>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="seccion7 mt-150">
+  <div class="seccion7 pt-3 pb-3 mt-150" *ngIf="!loader">
     <div class="container">
-      <div class="row mb-50">
-        <div class="col-md-6 my-auto">
-          <h2 class="size38 font-weight-700 text-black">¡Nuestra Smart<span style="color:#310087">Suite</span>
-            siempre a tu alcance!
-            </h2>
-            <p class="size18">Cuenta con soluciones tecnológicas en aplicaciones móviles y web en la nube logrando una optima gestión de tus procesos. </p>
+      <div class="row mb-50" *ngIf="data.siempre_a_tu_alcance">
+        <div class="col-md-6 pt-3 pb-3">
+            <h2 class="size38 font-weight-500 text-black line-height-41" [innerHTML]="data.siempre_a_tu_alcance.titulo | safeHtml: 'html'" style="width:80%"></h2>
+            <p class="size18" [innerHTML]="data.siempre_a_tu_alcance.descripcion | safeHtml: 'html'"></p>
         </div>
         <div class="col-md-6">
-          <img class="img-fluid" src="./assets/images/comp3PNG.png" alt="Alcance">
+          <img class="img-fluid" [src]="data.siempre_a_tu_alcance.imagen" alt="Alcance">
         </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="data.resultados_agiles">
         <div class="col-md-6">
-          <img class="img-fluid" src="./assets/images/comp4PNG.png" alt="Soluciones">
+          <img class="img-fluid" [src]="data.resultados_agiles.imagen" alt="Soluciones">
         </div>
-        <div class="col-md-6 my-auto">
-          <h2 class="size38 font-weight-700 text-black">Soluciones y <br>resultados ágiles.</h2>
-          <p class="size18">Implementamos metodologías eficientes, dinámicas y activas bajo un trabajo colaborativo garantizando las mejores prácticas.</p>
+        <div class="col-md-6 pt-3 pb-3">
+          <h2 class="size38 font-weight-500 text-black line-height-41" [innerHTML]="data.resultados_agiles.titulo"></h2>
+          <p class="size18" [innerHTML]="data.resultados_agiles.descripcion"></p>
         </div>
       </div>
     </div>
   </div>
-  <div class="seccion8 bg-soft-blue pt-150 mt-35n pb-50">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h2 class="size38 font-weight-700 text-black">Nuestros clientes</h2>
-          <p class="size18">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam arcu lacus, maximus sed dignissim nec, venenatis ut nibh. Curabitur vel venenatis metus, eget lacinia odio. Phasellus ut turpis nunc. Nunc porta ultricies nibh, et ultricies nisl lobortis vel.</p>
+  <div class="seccion8 bg-soft-blue pt-150 mt-35n pb-50" *ngIf="!loader" >
+    <div class="container" *ngIf="data.nuestros_clientes">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-4">
+          <h2 class="size38 font-weight-700 text-black">{{ data.nuestros_clientes.titulo }}</h2>
+          <p class="size18" [innerHTML]="data.nuestros_clientes.descripcion | safeHtml: 'html'"></p>
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-7 pt-4 pb-4">
+          <drag-scroll class="drag-scroll">
+              <ul>
+                <ng-container *ngFor="let cliente of data.nuestros_clientes.clientes; let i = index">
+                  <li><img class="img-fluid" [src]="cliente.logo" alt="cliente-{{i}}"></li>
+                </ng-container>
+              </ul>
+          </drag-scroll>
+        </div>
       </div>
     </div>
   </div>
-  <div class="seccion9 bg-blue pt-5 pb-5">
-    <div class="container">
+  <div class="seccion9 bg-blue pt-5 pb-5" *ngIf="!loader">
+    <div class="container" *ngIf="data.datos_de_contacto">
       <div class="row">
         <div class="col-md-6">
-          <h2 class="text-white size35 font-weight-700 line-height-45 letter-spacing-1-03">¡Anímate a explorar y a encontrar la solución que necesitas con Smartsuite!</h2>
-          <div class="row mb-2">
-            <div class="col-md-1">
-              <img src="./assets/images/direccion.png" alt="Dirección">
+          <h2 class="text-white size35 font-weight-700 line-height-45 letter-spacing-1-03">{{ data.datos_de_contacto.titulo }}</h2>
+          <ng-container *ngFor="let contacto of data.datos_de_contacto.informacion">
+            <div class="row mb-2">
+              <div class="col-md-1">
+                <img [src]="contacto.icono">
+              </div>
+              <div class="col-md-11">
+                <h3 class="mb-0 text-white font-weight-700 size18 letter-spacing-053 line-height-22">{{ contacto.titulo }}</h3>
+                <p class="text-white size16 line-height-20" [innerHTML]="contacto.descripcion | safeHtml: 'html'">
+              </div>
             </div>
-            <div class="col-md-11">
-              <h3 class="mb-0 text-white font-weight-700 size18 letter-spacing-053 line-height-22">Dirección</h3>
-              <p class="text-white size16 line-height-20">Carrera 83c # 17 - 52 Barrio ingenio III<br>
-                Cali, Colombia</p>
-            </div>
-          </div>
-          <div class="row mb-2">
+          </ng-container>
+         
+          <!-- <div class="row mb-2">
             <div class="col-md-1">
               <img src="./assets/images/phonePNG.png" alt="Teléfono">
             </div>
@@ -344,7 +230,7 @@
               <p class="text-white size16 line-height-20">Lunes a Viernes: 8:00am - 6:00pm<br>
                 Sábados: 8:00am - 10:00p.m.</p>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="col-md-6">
           <form (ngSubmit)="enviarForm(formularioFoot)" #formularioFoot="ngForm" id="formulario-foot" class="foot-contact">
@@ -353,8 +239,8 @@
                 <div class="form-row pt-2 pb-2">
                   <label class="size16 text-soft-white" for="nombres">Nombres</label>
                   <input type="text" class="form-control" id="nombres" name="nombres" #nombres="ngModel" [(ngModel)]="user.nombres" required>
-                  <small style="color:#c30000;" *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)">
-                      Nombres es un campo requerido.
+                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)">
+                     Nombres es un campo requerido.
                   </small>
                 </div>
               </div>
@@ -362,7 +248,7 @@
                 <div class="form-row pt-2 pb-2">
                   <label class="size16 text-soft-white" for="apellidos">Apellidos</label>
                   <input type="text" class="form-control" id="apellidos" name="apellidos" #apellidos="ngModel" [(ngModel)]="user.apellidos" required>
-                  <small style="color:#c30000;" *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
                     Apellidos es un campo requerido.
                   </small>
                 </div>
@@ -371,7 +257,7 @@
                 <div class="form-row pt-2 pb-2">
                   <label class="size16 text-soft-white" for="telefono">Número de Teléfono</label>
                   <input type="tel" class="form-control" id="telefono" name="telefono" #telefono="ngModel" [(ngModel)]="user.telefono" pattern="^\d+$" required>
-                  <small style="color:#c30000;" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
                       Ingrese un teléfono válido.
                   </small>
                 </div>
@@ -380,7 +266,7 @@
                 <div class="form-row pt-2 pb-2">
                   <label class="size16 text-soft-white" for="ciudad">Ciudad</label>
                   <input type="text" class="form-control" id="ciudad" name="ciudad" #ciudad="ngModel" [(ngModel)]="user.ciudad" required>
-                  <small style="color:#c30000;" *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)">
+                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)">
                     Ciudad es un campo requerido.
                   </small>
                 </div>
@@ -390,22 +276,22 @@
             <div class="form-row pt-2 pb-2">
                 <label class="size16 text-soft-white" for="email">Correo Electrónico</label>
                 <input type="email" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="user.email" email="true" required>
-                <small style="color:#c30000;" *ngIf="email.invalid && (email.dirty || email.touched)">
+                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="email.invalid && (email.dirty || email.touched)">
                     Ingrese un correo electrónico válido.
                 </small>
             </div>
            
             <div class="form-row pt-2 pb-2">
                 <label class="size16 text-soft-white" for="mensaje">Mensaje</label>
-                <textarea class="form-control h-100px mb-3" id="mensaje" name="mensaje" placeholder="Escribe aquí tu mensaje" #mensaje="ngModel" [(ngModel)]="user.mensaje" required></textarea>
-                <small style="color:#c30000;" *ngIf="mensaje.invalid && (mensaje.dirty || mensaje.touched)">
+                <textarea class="form-control h-100px" id="mensaje" name="mensaje" placeholder="Escribe aquí tu mensaje" #mensaje="ngModel" [(ngModel)]="user.mensaje" required></textarea>
+                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="mensaje.invalid && (mensaje.dirty || mensaje.touched)">
                     El mensaje es un campo requerido.
                   </small>
             </div>
             <div class="form-check text-center">
                 <input type="checkbox" name="acepto" #acepto="ngModel" [(ngModel)]="user.acepto" class="form-check-input" id="acepto" required>
                 <label class="size16 text-soft-white" for="acepto">Conozco y acepto la política de datos</label>
-                <small style="color:#c30000;" *ngIf="acepto.invalid && (acepto.dirty || acepto.touched)">
+                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="acepto.invalid && (acepto.dirty || acepto.touched)">
                     Debe aceptar las condiciones.
                 </small>
             </div>

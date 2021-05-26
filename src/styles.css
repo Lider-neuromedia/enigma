@@ -1,13 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 /*html, body { height: 100%; }*/
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-p, ul{
-    font-family: 'Ubuntu', sans-serif;
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+p, ul, h1, h2, h3, h4, h5, h6{
+    font-family: 'Ubuntu', sans-serif !important;
     color:#546170;
 }
-
+a:hover{
+    text-decoration: none;
+}
 /* Background Colors */
 .bg-gray{
     background-color: #f6f6f6;
@@ -31,30 +35,42 @@ p, ul{
 /*========================*/
 
 /* Text Colors */
-.text-black{
+.text-black,
+.text-black p{
     color:#546170;
 }
 
-.text-gray{
+.text-gray,
+.text-gray p{
     color: #828282;
 }
 
-.text-white{
-    color:#fff;
+.text-white,
+.text-white p{
+    color:#fff !important;
 }
 
-.text-blue{
+.text-blue,
+.text-blue p{
     color: #31589A;
 }
 
-.text-soft-white{
+.text-soft-white,
+.text-soft-white p{
     color:#FAFAFA;
+}
+.text-gray2,
+.text-gray2 p{
+    color: #9CA9BF !important;
 }
 /*==================*/
 
 /* Font Weight */
 .font-weight-200{
     font-weight:200;
+}
+.font-weight-300{
+    font-weight:300 !important;
 }
 .font-weight-400{
     font-weight:400;
@@ -230,6 +246,8 @@ p, ul{
 .h-100px{
     height: 100px!important;
 }
+
+
 /*=============*/
 
 /* Header */
@@ -331,7 +349,6 @@ a:-webkit-any-link:focus-visible {
 
 /* Primera Sección */
 .enigma-background{
-    background-image: url(./assets/images/bg_enigma.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -339,32 +356,83 @@ a:-webkit-any-link:focus-visible {
 .nav-pills .nav-link{
     opacity: .3;
 }
-
+.nav-link{
+    padding: .5rem 0rem;
+}
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
     opacity: 1;
     background-color: transparent;
 }
 
 .enigma .seccion4{
-    background-image: url(./assets/images/bg_seccion4.png);
     background-repeat: no-repeat;
     background-size: cover;
     padding: 50px 0 40px;
 }
-
+.seccion6{
+    position: relative;
+}
 .seccion6 .img-aplicaciones{
-    position: absolute;
-    top: -140px;
+    /* position: absolute;
+    top: -140px; */
+    margin-top: -65px;
+    margin-bottom: -65px;
 }
 
 .card-zoom:hover {
     transition: transform .3s;
     transform: scale(1.05);
 }
+.drag-scroll {
+    height: 500px;
+    width: 100%;
+    -moz-column-count: 3;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 20px;
+    column-count: 3;
+    column-gap: 20px;
+    cursor: grab;
+    overflow: auto;
+}
+.drag-scroll ul{
+    list-style: none;
+    padding: 0;
+}
+.drag-scroll ul li{
+   width: 29%;
+   margin: 1em 2%;
+   float: left;
+}
+.drag-scroll ul li:nth-child(3n-1){
+    margin-top: -20px;
+}
+.drag-scroll img {
+    height: auto;
+    width: 100%;
+}
 
+.margintopN:nth-child(3n-1) {
+    margin-top: -20px;
+}
+.margintopN{
+    width: 100%;
+    margin: 1em 0;
+    float: left;
+}
 /* Footer */
 footer ul{
     list-style-type: none;
     padding-inline-start: 0;
 }
 /*==============*/
+@media (min-width: 320px){
+    .column2{
+        column-count: 1;
+    }
+}
+@media (min-width: 1280px){
+    .column2{
+        column-count: 2;
+    }
+}

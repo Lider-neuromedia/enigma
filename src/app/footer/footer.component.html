@@ -3,69 +3,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h3 class="text-white size16 font-weight-700 line-height-19">NUESTROS <br>PRODUCTOS</h3>
+                    <h3 class="text-white size16 font-weight-700 line-height-19 text-uppercase" style="width:50%">{{ dataColumn1.name }}</h3>
                     <div class="row">
-                        <div class="col-md-6">
-                            <ul>
-                                <li>
-                                    <a class="size16 text-white" href="#">Smart sale</a>
-                                </li>
-                                <li>
-                                    <a class="size16 text-white" href="#">Mobile forms</a>
-                                </li>
-                                <li>
-                                    <a class="size16 text-white" href="#">One check</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <ul>
-                                <li>
-                                    <a class="size16 text-white" href="#">On time</a>
-                                </li>
-                                <li>
-                                    <a class="size16 text-white" href="#">Care task</a>
-                                </li>
-                                <li>
-                                    <a class="size16 text-white" href="#">In track</a>
-                                </li>
+                        <div class="col-md-12">
+                            <ul style="column-count:2">
+                                <ng-container *ngFor="let column1 of dataColumn1.items">
+                                    <li>
+                                        <a class="size16 text-white" href="column1.url">{{column1.title}}</a>
+                                    </li>
+                                </ng-container>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3 class="text-white size16 font-weight-700 mt-2">ENIGMA</h3>
+                    <h3 class="text-white size16 font-weight-700 mt-2 text-uppercase" style="width:50%">{{ dataColumn2.name }}</h3>
                     <div class="row">
-                        <div class="col-md-6">
-                            <ul>
-                                <li>
-                                    <a class="size16 text-white" href="#">Compañía</a>
-                                </li>
-                                <li>
-                                    <a class="size16 text-white" href="#">Acerca de nosotros</a>
-                                </li>
-                                <li>
-                                    <a class="size16 text-white" href="#">Política de privacidad</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <ul>
-                                <li>
-                                    <a class="size16 text-white" href="#">Política de cookies</a>
-                                </li>
-                                <li>
-                                    <a class="size16 text-white" href="#">Términos y condiciones</a>
-                                </li>
-                                <li>
-                                    <a class="size16 text-white" href="#">APIs y documentación</a>
-                                </li>
+                        <div class="col-md-12">
+                            <ul style="column-count:2">
+                                <ng-container *ngFor="let column2 of dataColumn2.items">
+                                    <li>
+                                        <a class="size16 text-white" href="column2.url">{{column2.title}}</a>
+                                    </li>
+                                </ng-container>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 my-auto">
-                    <img class="img-fluid" src="./assets/images/logofooter.png" alt="Logo Footer">
+                    <ng-container *ngFor="let widget of dataWidgets.logo_footer">
+                        <img class="img-fluid" src="{{ widget.instance.url }}" alt="Logo Footer">
+                    </ng-container>
                 </div>
             </div>
         </div>

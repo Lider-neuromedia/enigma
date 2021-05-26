@@ -1,13 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Pipe, PipeTransform } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {DomSanitizer,SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl} from '@angular/platform-browser';
+// import { SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl } from '@angular/platform-browser';
 
 import {MatIconRegistry} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import { DragScrollComponent } from 'ngx-drag-scroll';
+import { ServicesService } from './../services/services.service';
 
 declare var $ : any; 
 
-
+@Pipe({ name: 'safeHtml'})
+export class SafeHtmlPipe implements PipeTransform  {
+  constructor(private sanitized: DomSanitizer) {}
+  public transform(value: any, type: string): SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
+    // return this.sanitized.bypassSecurityTrustHtml(value);
+    switch (type) {
+      case 'html': return this.sanitized.bypassSecurityTrustHtml(value);
+      case 'style': return this.sanitized.bypassSecurityTrustStyle(value);
+      case 'script': return this.sanitized.bypassSecurityTrustScript(value);
+      case 'url': return this.sanitized.bypassSecurityTrustUrl(value);
+      case 'resourceUrl': return this.sanitized.bypassSecurityTrustResourceUrl(value);
+      default: throw new Error(`Invalid safe type specified: ${type}`);
+    }
+  }
+}
 
 @Component({
   selector: 'app-inicio',
@@ -17,7 +34,13 @@ declare var $ : any;
 export class InicioComponent implements OnInit {
   public user: any;
 
-  constructor(private _sanitizer: DomSanitizer, private http: HttpClient) { 
+  data:any = [];
+  public activePillIndex:number = 0;
+
+  dataMenuP:any = [];
+  loader = true;
+
+  constructor(private _sanitizer: DomSanitizer, private _homeservice:ServicesService) { 
     this.user = {
       nombres: '',
       apellidos: '',
@@ -35,7 +58,14 @@ export class InicioComponent implements OnInit {
   urlSaneada = this._sanitizer.bypassSecurityTrustResourceUrl(this.urlSinProcesar);
 
   ngOnInit(): void {
+    this._homeservice.getHome()
+    .subscribe((res:any) => {
+      this.loader = false;
+      this.data = this._sanitizer.bypassSecurityTrustHtml(res);
+      this.data = this.data.changingThisBreaksApplicationSecurity;
+    });
   }
+
 
   enviarForm(form) {
     $.ajax({
@@ -59,6 +89,10 @@ export class InicioComponent implements OnInit {
         }
       }
     });
+   }
+
+   public selectPill(index:number) {
+    this.activePillIndex = index;
    }
 
 }

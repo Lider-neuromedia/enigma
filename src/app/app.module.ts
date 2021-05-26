@@ -12,16 +12,19 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
 
-import { InicioComponent } from './inicio/inicio.component';
+import { InicioComponent, SafeHtmlPipe } from './inicio/inicio.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { DragScrollModule } from 'ngx-drag-scroll';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    SafeHtmlPipe,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,9 @@ import { HeaderComponent } from './header/header.component';
     MatSidenavModule,
     MatCardModule,
     FormsModule,      
-    routing
+    routing,
+    DragScrollModule,
+    NgxSkeletonLoaderModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
