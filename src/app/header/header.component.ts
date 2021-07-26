@@ -18,16 +18,18 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this._homeservice.getMenuPrincipal()
     .subscribe((res:any) => {
-          this.dataMenuP = res;        
-    });
-    this._homeservice.getMenuInicioSesion()
-    .subscribe((res:any) => {
+          this.dataMenuP = res;
+        });
+        this._homeservice.getMenuInicioSesion()
+        .subscribe((res:any) => {
           this.dataMenuI = res;        
+          console.log(this.dataMenuI);
     });
     this._homeservice.getWidgets()
     .subscribe((res:any) => {
           this.dataWidgets = res;        
     });
   }
+  
 }
 

@@ -1,14 +1,52 @@
 <div class="enigma">
   <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'500px' }"></ngx-skeleton-loader>
   <ng-container *ngIf="data.banner">
-    <div *ngIf="!loader" class="enigma-background seccion1" style="background-image: url('{{ data.banner.imagen }}')">
+    <div *ngIf="!loader" class="enigma-background seccion1" >
+      <div *ngIf="data.banner.imagen" style="background-image: url('{{ data.banner.imagen }}')">
+        <!-- <div class="embed-responsive embed-responsive-16by9">
+          <span class="embed-responsive-item" [innerHTML]="data.banner.video | safeHtml: 'html'"></span>
+        </div> -->
+        <div *ngIf="!data.banner.imagen" class="embed-responsive embed-responsive-16by9">
+          <video class="embed-responsive-item" width="1920" height="600" controls="false" autoplay="true" playsinline style="position:relative">
+            <source src="{{data.banner.video}}" type="video/mp4">
+          </video>
+        </div>
         <div class="container pt-5 pb-5">
-            <div class="row pt-5 pb-5">
-                <div class="col-sm-12 pt-5 pb-5">
-                    <span [innerHtml]="data.banner.texto | safeHtml: 'html'"></span>
-                </div>
+            <div class="row pt-5 pb-5 d-flex justify-content-center">
+                <p class="size28 text-white">{{ data.banner.titulo }}</p>
+                <ngx-typed-js class="size51 text-white text-center mt-5 mb-4 font-weight-700 w-100" [strings]="[data.banner.typed.texto1,data.banner.typed.texto2,data.banner.typed.texto3]" 
+                              [shuffle]="false" 
+                              [typeSpeed]="60"
+                              [backSpeed]="20"
+                              [loop]="true"
+                              [autoInsertCss]="true"
+                              [backDelay]="500">
+                              <p class="typing"></p>
+                </ngx-typed-js>
+                <p class="size35 text-white letter-spacing-056 line-height-46 text-center w-50 mt-1">{{ data.banner.descripcion }}</p>
             </div>
         </div>
+      </div>
+      <div *ngIf="!data.banner.imagen" class="embed-responsive embed-responsive-16by9">
+        <video class="embed-responsive-item" width="1280" height="auto" controls="false" autoplay="true" playsinline>
+          <source src="{{data.banner.video}}" type="video/mp4">
+        </video>
+      </div>
+      <div *ngIf="!data.banner.imagen" class="container pt-5 pb-5" style="position: absolute;z-index: 1;overflow: hidden;top: 0;transform: translate(-50%, 50%);margin-right: 50%;margin-left: 50%;">
+          <div class="row pt-5 pb-5 d-flex justify-content-center">
+              <p class="size28 text-white">{{ data.banner.titulo }}</p>
+              <ngx-typed-js class="size51 text-white text-center mt-5 mb-4 font-weight-700 w-100" [strings]="[data.banner.typed.texto1,data.banner.typed.texto2,data.banner.typed.texto3]" 
+                            [shuffle]="false" 
+                            [typeSpeed]="60"
+                            [backSpeed]="20"
+                            [loop]="true"
+                            [autoInsertCss]="true"
+                            [backDelay]="500">
+                            <p class="typing"></p>
+              </ngx-typed-js>
+              <p class="size35 text-white letter-spacing-056 line-height-46 text-center w-50 mt-1">{{ data.banner.descripcion }}</p>
+          </div>
+      </div>
     </div>
   </ng-container>
   <div class="container seccion2">
@@ -27,7 +65,7 @@
       </ng-container>
     </div>
   </div>
-  <div class="seccion3 bg-soft-blue">
+  <div id="smartsuite" class="seccion3 bg-soft-blue pt-3 pb-3">
     <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'500px' }"></ngx-skeleton-loader>
     <div class="container" *ngIf="data.soluciones">
         <div class="row align-items-center pt-5 pb-5" *ngIf="!loader">
@@ -39,7 +77,10 @@
                 <div class="row">
                   <div class="col-md-12 column2">
                     <ng-container *ngFor="let linkTab of tab.soluciones_tabs; let i = index">
-                      <a class="nav-link fade" [ngClass]="{'active show': i === activePillIndex}" id="{{i}}-tab" data-toggle="pill" [attr.href]="'#'+'v-pills-'+i" role="tab" aria-controls="{{i}}" aria-selected="true"><img src="{{ linkTab.logo }}" (click)="selectPill(i)"></a>
+                      <!-- <a onmouseover="openCity(event, i)" class="nav-link fade" [ngClass]="{'active show': i === activePillIndex}" id="{{i}}-tab" data-toggle="pill" [attr.href]="'#'+'v-pills-'+i" role="tab" aria-controls="{{i}}" aria-selected="true"> -->
+                      <a class="nav-link fade" [ngClass]="{'active show': i === activePillIndex}" id="{{i}}-tab" data-toggle="pill" [attr.href]="'#'+'v-pills-'+i" role="tab" aria-controls="{{i}}" aria-selected="true">
+                        <img src="{{ linkTab.logo }}" (click)="selectPill(i)">
+                      </a>
                     </ng-container>
                   </div>
                 </div>
@@ -61,8 +102,9 @@
     <div class="row" *ngIf="data.solucion_ideal">
       <div class="col-md-12" *ngIf="!loader">
         <div class="seccion4 border-radius-12 text-center" style="background-image: url('{{ data.solucion_ideal.imagen_de_fondo }}')">
-          <p class="text-center size38 font-weight-700 text-white letter-spacing-056 line-height-46 mb-4">{{ data.solucion_ideal.titulo }}</p>
-          <a class="text-blue size18 pt-2 pb-2 pr-5 pl-5" mat-raised-button href="data.solucion_ideal.url_del_boton">{{ data.solucion_ideal.texto_del_boton }}</a>
+          <p class="text-center size38 font-weight-700 text-white letter-spacing-056 line-height-46 mb-3">{{ data.solucion_ideal.titulo }}</p>
+          <a class="size18 btn-white" mat-raised-button [href]="data.solucion_ideal.url_del_boton">{{ data.solucion_ideal.texto_del_boton }}</a>
+          <!-- <button mat-raised-button class="btn-intrack-fill w-15 size18 border-radius-2 font-weight-400">Demo</button> -->
         </div>
       </div>
     </div>
@@ -72,7 +114,7 @@
       <ngx-skeleton-loader class="d-flex pt-3 pb-5" count="3" *ngIf="loader" animation="progress" appearance="circle" [theme]="{ 'width':'100%','height':'250px','border-radius': '10px' }"></ngx-skeleton-loader>
       <div class="row"  *ngIf="!loader">
         <div class="offset-md-2 col-md-8" *ngIf="data.nuestro_compromiso">
-          <h2 class="mt-5 text-center text-black size38 font-weight-700 letter-spacing-056 line-height-46">{{ data.nuestro_compromiso.titulo }}</h2>
+          <h2 class="mt-5 text-center text-black size35 font-weight-700 letter-spacing-056 line-height-46">{{ data.nuestro_compromiso.titulo }}</h2>
           <p class="size18 text-center" [innerHTML]="data.nuestro_compromiso.descripcion"></p>
         </div>
       </div>
@@ -89,7 +131,7 @@
                   <img class="d-inline-block float-left img-fluid p-3" src="{{ iconos.icono }}" alt="Soluciones">
                 </div>
                 <div class="col-md-8 my-auto pl-0">
-                  <p class="size18 p-3" [innerHTML]="iconos.descripcion"></p>
+                  <span class="size18 p-3 m-0 d-block" [innerHTML]="iconos.descripcion"></span>
                 </div>
               </div>
             </mat-card>
@@ -97,10 +139,10 @@
         </ng-container>
       </div>
       <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'200px' }"></ngx-skeleton-loader>
-      <div class="row mt-5" *ngIf="data.hablemos">
+      <div id="conocenos" class="row mt-5" *ngIf="data.hablemos">
         <div class="col-md-12 text-center" *ngIf="!loader">
           <h2 class="size38 font-weight-700 text-blue text-center mt-4">{{ data.hablemos.titulo }}</h2>
-          <a mat-raised-button class="pt-2 pb-2 pr-4 pl-4 size16 font-weight-400 text-white bg-sea-blue" href="{{ data.hablemos.url_boton }}">{{ data.hablemos.texto_boton }}</a>
+          <a mat-raised-button class="size14 font-weight-400 btn-sea-blue pt-2 pb-2 pr-2 pl-2" href="{{ data.hablemos.url_boton }}">{{ data.hablemos.texto_boton }}</a>
         </div>
       </div>
     </div>
@@ -111,12 +153,12 @@
           <h2 class="text-black size34 line-height-41 font-weight-700 text-center">{{ data.expertos.titulo }}</h2>
         </div>
         <div class="col-md-6">
-          <p class="font-weight-400 size18 letter-spacing-027 text-black mb-4" [innerHTML]="data.expertos.descripcion"></p>
+          <span class="font-weight-400 size18 letter-spacing-027 text-black mb-4" [innerHTML]="data.expertos.descripcion | safeHtml: 'html'"></span>
           <div class="row">
             <ng-container *ngFor="let profesional of data.expertos.profesionales">
               <div class="col-sm pb-3">
                 <div class="card-teams card-zoom">
-                  <img class="mx-auto d-block mb-3" src="{{ profesional.icono }}" alt="Ingenieros">
+                  <img class="mx-auto d-block mb-3" src="{{ profesional.icono }}" alt="Contamos con todo un equipo de expertos que garantizan soluciones digitales personalizadas">
                   <p class="text-center text-blue font-weight-500 size18 mb-0">{{ profesional.numero }}</p>
                   <p class="text-center size16">{{ profesional.texto }}</p>
                 </div>
@@ -155,7 +197,7 @@
   </div>
   <div class="seccion7 pt-3 pb-3 mt-150" *ngIf="!loader">
     <div class="container">
-      <div class="row mb-50" *ngIf="data.siempre_a_tu_alcance">
+      <div class="row align-items-center mb-50" *ngIf="data.siempre_a_tu_alcance">
         <div class="col-md-6 pt-3 pb-3">
             <h2 class="size38 font-weight-500 text-black line-height-41" [innerHTML]="data.siempre_a_tu_alcance.titulo | safeHtml: 'html'" style="width:80%"></h2>
             <p class="size18" [innerHTML]="data.siempre_a_tu_alcance.descripcion | safeHtml: 'html'"></p>
@@ -164,7 +206,7 @@
           <img class="img-fluid" [src]="data.siempre_a_tu_alcance.imagen" alt="Alcance">
         </div>
       </div>
-      <div class="row" *ngIf="data.resultados_agiles">
+      <div class="row align-items-center" *ngIf="data.resultados_agiles">
         <div class="col-md-6">
           <img class="img-fluid" [src]="data.resultados_agiles.imagen" alt="Soluciones">
         </div>
@@ -175,7 +217,7 @@
       </div>
     </div>
   </div>
-  <div class="seccion8 bg-soft-blue pt-150 mt-35n pb-50" *ngIf="!loader" >
+  <div class="seccion8 bg-soft-blue mt-35n pt-5 pb-50" *ngIf="!loader" >
     <div class="container" *ngIf="data.nuestros_clientes">
       <div class="row align-items-center justify-content-center">
         <div class="col-md-4">
@@ -194,7 +236,7 @@
       </div>
     </div>
   </div>
-  <div class="seccion9 bg-blue pt-5 pb-5" *ngIf="!loader">
+  <div id="contacto" class="seccion9 bg-blue pt-5 pb-5" *ngIf="!loader">
     <div class="container" *ngIf="data.datos_de_contacto">
       <div class="row">
         <div class="col-md-6">
@@ -210,27 +252,6 @@
               </div>
             </div>
           </ng-container>
-         
-          <!-- <div class="row mb-2">
-            <div class="col-md-1">
-              <img src="./assets/images/phonePNG.png" alt="Teléfono">
-            </div>
-            <div class="col-md-11">
-              <h3 class="mb-0 text-white font-weight-700 size18 letter-spacing-053 line-height-22">Números de Contacto</h3>
-              <p class="text-white size16 line-height-20">(+57) 312 832 5529<br>
-                (+57) 485 4805 Ext. 1000</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-1">
-              <img src="./assets/images/clockPNG.png" alt="Horarios">
-            </div>
-            <div class="col-md-11">
-              <h3 class="mb-0 text-white font-weight-700 size18 letter-spacing-053 line-height-22">Horarios de Atención</h3>
-              <p class="text-white size16 line-height-20">Lunes a Viernes: 8:00am - 6:00pm<br>
-                Sábados: 8:00am - 10:00p.m.</p>
-            </div>
-          </div> -->
         </div>
         <div class="col-md-6">
           <form (ngSubmit)="enviarForm(formularioFoot)" #formularioFoot="ngForm" id="formulario-foot" class="foot-contact">
@@ -295,7 +316,9 @@
                     Debe aceptar las condiciones.
                 </small>
             </div>
-            <input type="submit" class="btn btn-primary btn-blue mt-4 w-40 mx-auto d-block" name="enviar" value="Enviar" [disabled]="formularioFoot.invalid">
+            <button type="submit" mat-raised-button class="btn btn-sea-blue mt-4 w-40 mx-auto d-block pr-5 pl-5" name="enviar" value="Enviar" [disabled]="formularioFoot.invalid">
+              Enviar
+              </button>
           </form>
         </div>
       </div>

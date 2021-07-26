@@ -8,13 +8,6 @@
                 <a class="navbar-brand" href="#"><img src="{{ widget.instance.url }}" alt="Logo principal" class="img-logo"></a>
             </ng-container>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- <ul class="navbar-nav ml-auto d-lg-none d-xl-none" >
-                    <ng-container *ngFor="let menuP of dataMenuP.items; let i = index">                        
-                        <li class="nav-item" *ngIf="menuP.title">
-                            <a class="nav-link nav-link-main smartsuite text-gray2 font-weight-300"   [ngClass]="{'smartsuite': i === 0}" href="{{ menuP.url }}">{{ menuP.title }}</a>
-                        </li>
-                    </ng-container>
-                </ul> -->
                 <ul class="navbar-nav main-menu-list mx-auto" >
                     <ng-container *ngFor="let menuP of dataMenuP.items; let i = index">
                         <li class="nav-item" *ngIf="menuP.title">
@@ -22,17 +15,17 @@
                         </li>
                     </ng-container>
                 </ul>
-                <ul class="navbar-nav iniciar-sesion">
+                <ul class="navbar-nav iniciar-sesion" *ngIf="dataMenuI.name">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle size18 font-weight-300 pr-4 pl-4" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a mat-raised-button class="nav-link dropdown-toggle size18 font-weight-300 pr-4 pl-4" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ dataMenuI.name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <ng-container *ngFor="let inicioI of dataMenuI.items">
-                                    <a class="dropdown-item" href="{{ inicioI.url }}"><img src="{{ inicioI.thumbnail_src }}" class="img-logo"> {{ inicioI.title }}</a>
-                                </ng-container>
-                            </div>
-                        </li>
+                            <ng-container *ngFor="let inicioI of dataMenuI.items">
+                                <a class="dropdown-item {{ inicioI.classes }}"  href="{{ inicioI.url }}"><img src="{{ inicioI.thumbnail_src }}" class="img-logo"> {{ inicioI.title }}</a>
+                            </ng-container>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

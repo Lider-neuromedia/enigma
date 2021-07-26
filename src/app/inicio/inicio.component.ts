@@ -1,4 +1,4 @@
-import { Component, OnInit,Pipe, PipeTransform } from '@angular/core';
+import { Component, Directive, HostListener, Input, OnInit,Pipe, PipeTransform } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {DomSanitizer,SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl} from '@angular/platform-browser';
 // import { SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl } from '@angular/platform-browser';
@@ -7,6 +7,7 @@ import {MatIconRegistry} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import { DragScrollComponent } from 'ngx-drag-scroll';
 import { ServicesService } from './../services/services.service';
+import { NgxTypedJsComponent } from 'ngx-typed-js';
 
 declare var $ : any; 
 
@@ -25,16 +26,17 @@ export class SafeHtmlPipe implements PipeTransform  {
     }
   }
 }
-
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
+
 export class InicioComponent implements OnInit {
   public user: any;
 
   data:any = [];
+  data_typed:any = [];
   public activePillIndex:number = 0;
 
   dataMenuP:any = [];
@@ -63,6 +65,7 @@ export class InicioComponent implements OnInit {
       this.loader = false;
       this.data = this._sanitizer.bypassSecurityTrustHtml(res);
       this.data = this.data.changingThisBreaksApplicationSecurity;
+      this.data_typed = this.data.banner.typed;
     });
   }
 
@@ -90,6 +93,20 @@ export class InicioComponent implements OnInit {
       }
     });
    }
+
+   openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
 
    public selectPill(index:number) {
     this.activePillIndex = index;
