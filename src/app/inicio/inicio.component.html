@@ -296,8 +296,8 @@
             
             <div class="form-row pt-2 pb-2">
                 <label class="size16 text-soft-white" for="email">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="user.email" email="true" required>
-                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="email.invalid && (email.dirty || email.touched)">
+                <input type="email" class="form-control" id="correo" name="correo" #correo="ngModel" [(ngModel)]="user.correo" correo="true" required>
+                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
                     Ingrese un correo electrónico válido.
                 </small>
             </div>

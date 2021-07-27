@@ -1,6 +1,7 @@
 import { Component, Directive, HostListener, Input, OnInit,Pipe, PipeTransform } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {DomSanitizer,SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl} from '@angular/platform-browser';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 // import { SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl } from '@angular/platform-browser';
 
 import {MatIconRegistry} from '@angular/material/icon';
@@ -48,7 +49,7 @@ export class InicioComponent implements OnInit {
       apellidos: '',
       telefono: '',
       ciudad: '',
-      email: '',
+      correo: '',
       mensaje: '',
       acepto: ''
     };
@@ -72,7 +73,7 @@ export class InicioComponent implements OnInit {
 
   enviarForm(form) {
     $.ajax({
-      url: '',
+      url: 'https://pruebasneuro.co/N-1074/api/wp-content/themes/enigma/contacto/form-contacto.php',
       type: 'POST',
       data: JSON.stringify(this.user),
       dataType:"json",
@@ -80,15 +81,15 @@ export class InicioComponent implements OnInit {
        
       }, error: function(error){
         if(error.status === 200){
-          /*Swal.fire({
+          Swal.fire({
             icon: 'success',
             title: 'Gracias por regalarnos tus datos. Nos comunicaremos contigo.',
             showConfirmButton: true
-          });*/ 
+          }); 
           //console.log(error);
         form.reset();
         } else {
-          /*Swal.fire('Oops...', 'Algo pasó. Corrige los errores, por favor!', 'error')*/
+          Swal.fire('Oops...', 'Algo pasó. Corrige los errores, por favor!', 'error')
         }
       }
     });
