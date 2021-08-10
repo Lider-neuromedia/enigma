@@ -8,7 +8,7 @@ import {MatIconRegistry} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import { DragScrollComponent } from 'ngx-drag-scroll';
 import { ServicesService } from './../services/services.service';
-import { NgxTypedJsComponent } from 'ngx-typed-js';
+import { NgxTypedJsComponent } from 'ngx-typed-js' ;
 
 declare var $ : any; 
 
