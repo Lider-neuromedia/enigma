@@ -65,7 +65,7 @@
       </ng-container>
     </div>
   </div>
-  <div id="smartsuite" class="seccion3 bg-soft-blue pt-3 pb-3">
+  <div id="smartsuite" class="seccion3 bg-soft-blue pt-3 pb-3 mt-5">
     <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'500px' }"></ngx-skeleton-loader>
     <div class="container" *ngIf="data.soluciones">
         <div class="row align-items-center pt-5 pb-5" *ngIf="!loader">
@@ -139,7 +139,7 @@
         </ng-container>
       </div>
       <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'200px' }"></ngx-skeleton-loader>
-      <div id="conocenos" class="row mt-5" *ngIf="data.hablemos">
+      <div id="conocenos" class="row pt-5" *ngIf="data.hablemos">
         <div class="col-md-12 text-center" *ngIf="!loader">
           <h2 class="size38 font-weight-700 text-blue text-center mt-4">{{ data.hablemos.titulo }}</h2>
           <a mat-raised-button class="size14 font-weight-400 btn-sea-blue pt-2 pb-2 pr-2 pl-2" href="{{ data.hablemos.url_boton }}">{{ data.hablemos.texto_boton }}</a>
@@ -236,7 +236,7 @@
       </div>
     </div>
   </div>
-  <div id="contacto" class="seccion9 bg-blue pt-5 pb-5" *ngIf="!loader">
+  <div id="contacto" class="seccion9 bg-blue pt-5 pb-5 mt-5" *ngIf="!loader">
     <div class="container" *ngIf="data.datos_de_contacto">
       <div class="row">
         <div class="col-md-6">

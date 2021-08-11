@@ -11,7 +11,7 @@
                 <ul class="navbar-nav main-menu-list mx-auto" >
                     <ng-container *ngFor="let menuP of dataMenuP.items; let i = index">
                         <li class="nav-item" *ngIf="menuP.title">
-                            <a class="nav-link nav-link-main size18 text-gray2 font-weight-300" [ngClass]="{'item-smartsuite': i === 0}" href="{{ menuP.url }}">{{ menuP.title }}</a>
+                            <a class="nav-link nav-link-main size18 text-gray2 font-weight-300" [id]="menuP.menu_order" (click)="scrollConClick( menuP.url )" [ngClass]="{'item-smartsuite': i === 0}" style="cursor: pointer;">{{ menuP.title }}</a>
                         </li>
                     </ng-container>
                 </ul>

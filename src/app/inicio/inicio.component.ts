@@ -1,6 +1,7 @@
 import { Component, Directive, HostListener, Input, OnInit,Pipe, PipeTransform } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {DomSanitizer,SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl} from '@angular/platform-browser';
+import { CommonService } from '../services/common.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 // import { SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl } from '@angular/platform-browser';
 
@@ -43,7 +44,7 @@ export class InicioComponent implements OnInit {
   dataMenuP:any = [];
   loader = true;
 
-  constructor(private _sanitizer: DomSanitizer, private _homeservice:ServicesService) { 
+  constructor(private _sanitizer: DomSanitizer, private _homeservice:ServicesService, private common: CommonService) { 
     this.user = {
       nombres: '',
       apellidos: '',
@@ -61,6 +62,7 @@ export class InicioComponent implements OnInit {
   urlSaneada = this._sanitizer.bypassSecurityTrustResourceUrl(this.urlSinProcesar);
 
   ngOnInit(): void {
+    this.common.paginaInicioMetaData();
     this._homeservice.getHome()
     .subscribe((res:any) => {
       this.loader = false;
