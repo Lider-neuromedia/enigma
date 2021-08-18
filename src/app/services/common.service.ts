@@ -8,16 +8,11 @@ export class CommonService {
 
   constructor(private titulo: Title, private meta: Meta) { }
 
-  paginaInicioMetaData(): void{
-    this.paginaMetaData(
-      'Aplicativos para optimizar el rendimiento de tu equipo',
-      'Optimiza tus procesos y gestiona tu empresa desde tu telefono con informacion en tiempo real desde la nube',
-      'Soluciona problemas en tiempo real desde tu celular',
-      ''
-    )
+  paginaInicioMetaData(titulo: string, descripcion: string, keywords: string = "", url: string = "", imagen: string = ""): void{
+    this.paginaMetaData( titulo, descripcion, keywords, url, imagen )
   }
 
-  paginaMetaData( titulo: string, descripcion: string, keywords: string = '', url: string = '' ): void{
+  paginaMetaData( titulo: string, descripcion: string, keywords: string = '', url: string = '', imagen: string = "" ): void{
     this.titulo.setTitle(titulo);
 
     this.meta.updateTag({
@@ -28,6 +23,11 @@ export class CommonService {
     this.meta.updateTag({
       property: 'og:url',
       content: url
+    } as MetaDefinition);
+
+    this.meta.updateTag({
+      property: 'og:image',
+      content: imagen
     } as MetaDefinition);
 
     this.meta.updateTag({
@@ -53,6 +53,11 @@ export class CommonService {
     this.meta.updateTag({
       name: 'twitter:description',
       content: descripcion
+    } as MetaDefinition);
+
+    this.meta.updateTag({
+      name: 'twitter:image',
+      content: imagen
     } as MetaDefinition);
 
     this.meta.updateTag({

@@ -28,7 +28,7 @@ import { NgxTypedJsModule } from 'ngx-typed-js';
     SafeHtmlPipe,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,

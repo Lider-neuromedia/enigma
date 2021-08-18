@@ -62,9 +62,11 @@ export class InicioComponent implements OnInit {
   urlSaneada = this._sanitizer.bypassSecurityTrustResourceUrl(this.urlSinProcesar);
 
   ngOnInit(): void {
-    this.common.paginaInicioMetaData();
     this._homeservice.getHome()
     .subscribe((res:any) => {
+      console.log(res);
+      let seo = res.seo;
+      this.common.paginaInicioMetaData(seo.titulo, seo.descripcion, seo.palabras_claves, seo.url, seo.imagen);
       this.loader = false;
       this.data = this._sanitizer.bypassSecurityTrustHtml(res);
       this.data = this.data.changingThisBreaksApplicationSecurity;
