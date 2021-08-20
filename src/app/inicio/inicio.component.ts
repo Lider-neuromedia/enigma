@@ -64,7 +64,7 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
     this._homeservice.getHome()
     .subscribe((res:any) => {
-      console.log(res);
+      // console.log(res);
       let seo = res.seo;
       this.common.paginaInicioMetaData(seo.titulo, seo.descripcion, seo.palabras_claves, seo.url, seo.imagen);
       this.loader = false;
