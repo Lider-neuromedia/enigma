@@ -8,7 +8,7 @@
         </div> -->
       </div>
       <div *ngIf="!data.banner.imagen">
-        <video class="item-video" width="100%" height="635" autoplay controls loop muted>
+        <video onloadedmetadata="this.muted=true" oncanplay="this.play()" class="item-video" width="100%" height="635" autoplay controls loop muted>
           <source src="{{data.banner.video}}" type="video/mp4">
           Browser not supported
         </video>
@@ -218,6 +218,13 @@
                 </ng-container>
               </ul>
           </drag-scroll>
+          <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let cliente of data.nuestros_clientes.clientes; let i = index">
+              <ng-template carouselSlide id="cliente-{{i}}">
+                <img class="img-fluid" [src]="cliente.logo" alt="cliente-{{i}}">
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
         </div>
       </div>
     </div>
@@ -304,7 +311,7 @@
             </div>
             <button type="submit" mat-raised-button class="btn btn-sea-blue mt-4 w-40 mx-auto d-block pr-5 pl-5" name="enviar" value="Enviar" [disabled]="formularioFoot.invalid">
               Enviar
-              </button>
+            </button>
           </form>
         </div>
       </div>
