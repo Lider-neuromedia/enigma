@@ -118,13 +118,26 @@ export class InicioComponent implements OnInit {
    }
 
    customOptions: OwlOptions = {
+    // items: 3,
     loop: true,
-    mouseDrag: false,
+    mouseDrag: true,
     touchDrag: false,
     pullDrag: false,
+    rewind: true,
+    autoplay: true,
     dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
+    margin: 4,
+    center: true,
+    
+    // nav: true,
+    // slideBy: 'page',
+    // loop: true,
+    // mouseDrag: false,
+    // touchDrag: false,
+    // pullDrag: false,
+    // dots: false,
+    // navSpeed: 700,
+    // navText: ['', ''],
     responsive: {
       0: {
         items: 1
@@ -139,7 +152,7 @@ export class InicioComponent implements OnInit {
         items: 4
       }
     },
-    nav: true
+    // nav: true
   }
 
 }

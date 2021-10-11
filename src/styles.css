@@ -498,7 +498,30 @@ footer ul{
     padding-inline-start: 0;
 }
 /*==============*/
-
+.owl-carousel{
+    transform: rotate(90deg);
+    width: 180px;
+    margin-top:100px;
+} 
+.owl-item{
+    display: flex;
+    transform: rotate(-90deg) !important;
+}
+.containerImg .owl-stage{
+    display: flex;
+}
+/* .owl-carousel .owl-nav{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    top: calc(50% - 33px);
+} */
+/* div.owl-carousel .owl-nav .owl-prev, div.owl-carousel .owl-nav .owl-next{
+    font-size:36px;
+    top: unset;
+    bottom: 15px; 
+} */
 .btn-smartsale{
     margin-top: 25px;
     background-image: radial-gradient(57.99% 83.98%,#f90600 0,#ff5248 100%);
