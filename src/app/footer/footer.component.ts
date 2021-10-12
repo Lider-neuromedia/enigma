@@ -18,7 +18,7 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
     this._homeservice.getMenuFooterColumn1()
     .subscribe((res:any) => {
-          this.dataColumn1 = res;        
+          this.dataColumn1 = res; 
     });
     this._homeservice.getMenuFooterColumn2()
     .subscribe((res:any) => {
@@ -26,8 +26,7 @@ export class FooterComponent implements OnInit {
     });
     this._homeservice.getWidgets()
     .subscribe((res:any) => {
-          this.dataWidgets = res;        
+          this.dataWidgets = res;
     });
   }
-
 }

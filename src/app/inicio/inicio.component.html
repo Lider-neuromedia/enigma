@@ -6,36 +6,17 @@
         <!-- <div class="embed-responsive embed-responsive-16by9">
           <span class="embed-responsive-item" [innerHTML]="data.banner.video | safeHtml: 'html'"></span>
         </div> -->
-        <div *ngIf="!data.banner.imagen" class="embed-responsive embed-responsive-16by9">
-          <video class="embed-responsive-item" width="1920" height="600" controls="false" autoplay="true" playsinline style="position:relative">
-            <source src="{{data.banner.video}}" type="video/mp4">
-          </video>
-        </div>
-        <div class="container pt-5 pb-5">
-            <div class="row pt-5 pb-5 d-flex justify-content-center">
-                <p class="size28 text-white">{{ data.banner.titulo }}</p>
-                <ngx-typed-js class="size51 text-white text-center mt-5 mb-4 font-weight-700 w-100" [strings]="[data.banner.typed.texto1,data.banner.typed.texto2,data.banner.typed.texto3]" 
-                              [shuffle]="false" 
-                              [typeSpeed]="60"
-                              [backSpeed]="20"
-                              [loop]="true"
-                              [autoInsertCss]="true"
-                              [backDelay]="500">
-                              <p class="typing"></p>
-                </ngx-typed-js>
-                <p class="size35 text-white letter-spacing-056 line-height-46 text-center w-50 mt-1">{{ data.banner.descripcion }}</p>
-            </div>
-        </div>
       </div>
-      <div *ngIf="!data.banner.imagen" class="embed-responsive embed-responsive-16by9">
-        <video class="embed-responsive-item" width="1280" height="auto" controls="false" autoplay="true" playsinline>
+      <div *ngIf="!data.banner.imagen">
+        <video onloadedmetadata="this.muted=true" oncanplay="this.play()" class="item-video" width="100%" height="635" autoplay controls loop muted>
           <source src="{{data.banner.video}}" type="video/mp4">
+          Browser not supported
         </video>
       </div>
-      <div *ngIf="!data.banner.imagen" class="container pt-5 pb-5" style="position: absolute;z-index: 1;overflow: hidden;top: 0;transform: translate(-50%, 50%);margin-right: 50%;margin-left: 50%;">
-          <div class="row pt-5 pb-5 d-flex justify-content-center">
-              <p class="size28 text-white">{{ data.banner.titulo }}</p>
-              <ngx-typed-js class="size51 text-white text-center mt-5 mb-4 font-weight-700 w-100" [strings]="[data.banner.typed.texto1,data.banner.typed.texto2,data.banner.typed.texto3]" 
+      <div *ngIf="!data.banner.imagen" class="container container-info-banner" style="position: absolute;z-index: 1;overflow: hidden;top: 0;transform: translate(-50%, 50%);margin-right: 50%;margin-left: 50%;">
+          <div class="row d-flex justify-content-center info-banner">
+              <p class="text-white">{{ data.banner.titulo }}</p>
+              <ngx-typed-js class="text-white text-center font-weight-700 w-100 line-height-1" [strings]="[data.banner.typed.texto1,data.banner.typed.texto2,data.banner.typed.texto3, data.banner.typed.texto4]" 
                             [shuffle]="false" 
                             [typeSpeed]="60"
                             [backSpeed]="20"
@@ -44,7 +25,7 @@
                             [backDelay]="500">
                             <p class="typing"></p>
               </ngx-typed-js>
-              <p class="size35 text-white letter-spacing-056 line-height-46 text-center w-50 mt-1">{{ data.banner.descripcion }}</p>
+              <p class="text-white letter-spacing-056 text-center w-50 mt-1">{{ data.banner.descripcion }}</p>
           </div>
       </div>
     </div>
@@ -65,7 +46,7 @@
       </ng-container>
     </div>
   </div>
-  <div id="smartsuite" class="seccion3 bg-soft-blue pt-3 pb-3 mt-5">
+  <div id="smartsuite" class="seccion3 bg-soft-blue pt-3 pb-3 mt-3">
     <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'500px' }"></ngx-skeleton-loader>
     <div class="container" *ngIf="data.soluciones">
         <div class="row align-items-center pt-5 pb-5" *ngIf="!loader">
@@ -89,7 +70,12 @@
             <div class="col-md-6">
               <div class="tab-content" id="services-tabContent">
                 <ng-container *ngFor="let linkTab of tab.soluciones_tabs; let i = index">
-                  <div class="tab-pane fade" [ngClass]="{'active show': i === activePillIndex}" id="{{i}}" role="tabpanel" aria-labelledby="{{i}}"><img class="img-fluid" src="{{ linkTab.imagen }}"></div>
+                  <div class="tab-pane fade" [ngClass]="{'active show': i === activePillIndex}" id="{{i}}" role="tabpanel" aria-labelledby="{{i}}">
+                    <img class="img-fluid" src="{{ linkTab.imagen }}">
+                    <p class="text-center">
+                      <a class="btn-smartsale" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
+                    </p>
+                  </div>
                 </ng-container>
               </div>
             </div>
@@ -142,7 +128,7 @@
       <div id="conocenos" class="row pt-5" *ngIf="data.hablemos">
         <div class="col-md-12 text-center" *ngIf="!loader">
           <h2 class="size38 font-weight-700 text-blue text-center mt-4">{{ data.hablemos.titulo }}</h2>
-          <a mat-raised-button class="size14 font-weight-400 btn-sea-blue pt-2 pb-2 pr-2 pl-2" href="{{ data.hablemos.url_boton }}">{{ data.hablemos.texto_boton }}</a>
+          <a mat-raised-button class="size14 font-weight-400 btn-sea-blue pt-2 pb-2 pr-2 pl-2" href="{{ data.hablemos.url_boton }}" target="blank_">{{ data.hablemos.texto_boton }}</a>
         </div>
       </div>
     </div>
@@ -232,6 +218,13 @@
                 </ng-container>
               </ul>
           </drag-scroll>
+          <owl-carousel-o [options]="customOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']" class="containerImg">
+            <ng-container *ngFor="let cliente of data.nuestros_clientes.clientes; let i = index" >
+                <ng-template carouselSlide id="cliente-{{i}}">
+                  <img class="img-fluid" [src]="cliente.logo" alt="cliente-{{i}}">
+                </ng-template>
+            </ng-container>
+          </owl-carousel-o>
         </div>
       </div>
     </div>
@@ -318,7 +311,7 @@
             </div>
             <button type="submit" mat-raised-button class="btn btn-sea-blue mt-4 w-40 mx-auto d-block pr-5 pl-5" name="enviar" value="Enviar" [disabled]="formularioFoot.invalid">
               Enviar
-              </button>
+            </button>
           </form>
         </div>
       </div>

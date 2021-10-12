@@ -9,7 +9,7 @@
                             <ul style="column-count:2">
                                 <ng-container *ngFor="let column1 of dataColumn1.items">
                                     <li>
-                                        <a class="size16 text-white" href="column1.url">{{column1.title}}</a>
+                                        <a class="size16 text-white" href="{{column1.url}}" target="blank_">{{column1.title}}</a>
                                     </li>
                                 </ng-container>
                             </ul>
@@ -23,7 +23,7 @@
                             <ul style="column-count:2">
                                 <ng-container *ngFor="let column2 of dataColumn2.items">
                                     <li>
-                                        <a class="size16 text-white" href="column2.url">{{column2.title}}</a>
+                                        <a class="size16 text-white" href="{{column2.url}}">{{column2.title}}</a>
                                     </li>
                                 </ng-container>
                             </ul>
@@ -32,7 +32,9 @@
                 </div>
                 <div class="col-md-3 my-auto">
                     <ng-container *ngFor="let widget of dataWidgets.logo_footer">
-                        <img class="img-fluid" src="{{ widget.instance.url }}" alt="Logo Footer">
+                        <a href="{{ widget.instance.link_url }}">
+                            <img class="img-fluid" src="{{ widget.instance.url }}" alt="Logo Footer">
+                        </a>
                     </ng-container>
                 </div>
             </div>

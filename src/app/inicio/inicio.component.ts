@@ -1,4 +1,4 @@
-import { Component, Directive, HostListener, Input, OnInit,Pipe, PipeTransform } from '@angular/core';
+import { Component, Directive, HostListener, Input, OnInit,Pipe, PipeTransform, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {DomSanitizer,SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl} from '@angular/platform-browser';
 import { CommonService } from '../services/common.service';
@@ -10,6 +10,7 @@ import {MatCardModule} from '@angular/material/card';
 import { DragScrollComponent } from 'ngx-drag-scroll';
 import { ServicesService } from './../services/services.service';
 import { NgxTypedJsComponent } from 'ngx-typed-js' ;
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 declare var $ : any; 
 
@@ -38,6 +39,7 @@ export class InicioComponent implements OnInit {
   public user: any;
 
   data:any = [];
+  products:any = [];
   data_typed:any = [];
   public activePillIndex:number = 0;
 
@@ -64,7 +66,6 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
     this._homeservice.getHome()
     .subscribe((res:any) => {
-      // console.log(res);
       let seo = res.seo;
       this.common.paginaInicioMetaData(seo.titulo, seo.descripcion, seo.palabras_claves, seo.url, seo.imagen);
       this.loader = false;
@@ -73,7 +74,6 @@ export class InicioComponent implements OnInit {
       this.data_typed = this.data.banner.typed;
     });
   }
-
 
   enviarForm(form) {
     $.ajax({
@@ -116,5 +116,43 @@ export class InicioComponent implements OnInit {
    public selectPill(index:number) {
     this.activePillIndex = index;
    }
+
+   customOptions: OwlOptions = {
+    // items: 3,
+    loop: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: false,
+    rewind: true,
+    autoplay: true,
+    dots: false,
+    margin: 4,
+    center: true,
+    
+    // nav: true,
+    // slideBy: 'page',
+    // loop: true,
+    // mouseDrag: false,
+    // touchDrag: false,
+    // pullDrag: false,
+    // dots: false,
+    // navSpeed: 700,
+    // navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    // nav: true
+  }
 
 }

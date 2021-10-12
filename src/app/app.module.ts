@@ -19,6 +19,8 @@ import { DragScrollModule } from 'ngx-drag-scroll';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NgxTypedJsModule } from 'ngx-typed-js';
 
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +40,7 @@ import { NgxTypedJsModule } from 'ngx-typed-js';
     DragScrollModule,
     NgxSkeletonLoaderModule,
     NgxTypedJsModule,
+    CarouselModule,
     APP_ROUTING,
   ],
   providers: [],

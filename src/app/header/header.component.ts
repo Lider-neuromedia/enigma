@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
     this._homeservice.getMenuPrincipal()
     .subscribe((res:any) => {
           this.dataMenuP = res;
-          console.log(this.dataMenuP);
           // this.dataMenuP.items.forEach(element => {
           //   this.ordenMenu.push({
           //     orden: element.menu_order,
@@ -32,7 +31,6 @@ export class HeaderComponent implements OnInit {
         this._homeservice.getMenuInicioSesion()
         .subscribe((res:any) => {
           this.dataMenuI = res;        
-          console.log(this.dataMenuI);
     });
     this._homeservice.getWidgets()
     .subscribe((res:any) => {
