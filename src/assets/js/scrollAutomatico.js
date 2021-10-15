@@ -22,7 +22,7 @@ function moverScroll() {
                     if (valorScroll === 0) {
                         validarScroll = false;
                     }
-                }, 100);
+                }, 50);
             }
         }, 10);
     })
