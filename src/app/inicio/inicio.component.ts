@@ -1,22 +1,24 @@
-import { Component, Directive, HostListener, Input, OnInit,Pipe, PipeTransform, ViewChild } from '@angular/core';
+import { Component, Directive, HostListener, Input, OnDestroy, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {DomSanitizer,SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl} from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl } from '@angular/platform-browser';
 import { CommonService } from '../services/common.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 // import { SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl } from '@angular/platform-browser';
 
-import {MatIconRegistry} from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
+import { MatIconRegistry } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { DragScrollComponent } from 'ngx-drag-scroll';
 import { ServicesService } from './../services/services.service';
-import { NgxTypedJsComponent } from 'ngx-typed-js' ;
+import { NgxTypedJsComponent } from 'ngx-typed-js';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
-declare var $ : any; 
+declare var $: any;
+declare var moverScroll: any;
 
-@Pipe({ name: 'safeHtml'})
-export class SafeHtmlPipe implements PipeTransform  {
-  constructor(private sanitized: DomSanitizer) {}
+@Pipe({ name: 'safeHtml' })
+export class SafeHtmlPipe implements PipeTransform {
+  constructor(private sanitized: DomSanitizer) { }
+
   public transform(value: any, type: string): SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
     // return this.sanitized.bypassSecurityTrustHtml(value);
     switch (type) {
@@ -35,18 +37,22 @@ export class SafeHtmlPipe implements PipeTransform  {
   styleUrls: ['./inicio.component.css']
 })
 
-export class InicioComponent implements OnInit {
+export class InicioComponent implements OnInit, OnDestroy {
   public user: any;
 
-  data:any = [];
-  products:any = [];
-  data_typed:any = [];
-  public activePillIndex:number = 0;
+  data: any = [];
+  products: any = [];
+  data_typed: any = [];
+  public activePillIndex: number = 0;
 
-  dataMenuP:any = [];
+  dataMenuP: any = [];
   loader = true;
+  valorScroll: number = 0;
+  scrollCliente: any;
+  intervalo: NodeJS.Timeout;
+  intervalo2: NodeJS.Timeout;
 
-  constructor(private _sanitizer: DomSanitizer, private _homeservice:ServicesService, private common: CommonService) { 
+  constructor(private _sanitizer: DomSanitizer, private _homeservice: ServicesService, private common: CommonService) {
     this.user = {
       nombres: '',
       apellidos: '',
@@ -57,22 +63,63 @@ export class InicioComponent implements OnInit {
       acepto: ''
     };
   }
-  
+  ngOnDestroy(): void {
+    if(this.intervalo){
+      clearInterval(this.intervalo);
+    }
+    if(this.intervalo2){
+      clearInterval(this.intervalo2);
+    }
+  }
+
   urlSinProcesar = "//www.youtube.com/embed/5xX5-MXipGw?rel=0";
   //urlSinProcesar = "//www.youtube.com/embed/8pC5VZM2h8k?rel=0"+1;<--tambien los he visto de esta forma o cualquier entero
-  
+
   urlSaneada = this._sanitizer.bypassSecurityTrustResourceUrl(this.urlSinProcesar);
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this._homeservice.getHome()
-    .subscribe((res:any) => {
-      let seo = res.seo;
-      this.common.paginaInicioMetaData(seo.titulo, seo.descripcion, seo.palabras_claves, seo.url, seo.imagen);
-      this.loader = false;
-      this.data = this._sanitizer.bypassSecurityTrustHtml(res);
-      this.data = this.data.changingThisBreaksApplicationSecurity;
-      this.data_typed = this.data.banner.typed;
-    });
+      .subscribe((res: any) => {
+        let seo = res.seo;
+        this.common.paginaInicioMetaData(seo.titulo, seo.descripcion, seo.palabras_claves, seo.url, seo.imagen);
+        this.loader = false;
+        this.data = this._sanitizer.bypassSecurityTrustHtml(res);
+        this.data = this.data.changingThisBreaksApplicationSecurity;
+        this.data_typed = this.data.banner.typed;
+        moverScroll();
+      });
+  }
+  resetScroll() {
+      this.scrollCliente.scrollTop = this.valorScroll = 0;
+      if(this.intervalo){
+        clearInterval(this.intervalo);
+      }
+      if(this.intervalo2){
+        clearInterval(this.intervalo2);
+      }
+  }
+
+  temporizadorScroll(){
+    let validarScroll: boolean = false;
+    $('.drag-scroll-content').attr('id', 'scroll-cliente');
+    setTimeout(() => {
+      this.scrollCliente = document.getElementById("scroll-cliente");
+    this.intervalo = setInterval(() => {
+        this.scrollCliente.scrollTop = this.valorScroll;
+      if(!validarScroll){
+        this.valorScroll++    
+      }else{
+        this.valorScroll--;
+      }
+      if(this.valorScroll === 950){
+        validarScroll = true;
+      }
+      if(this.valorScroll === 0){
+        validarScroll = false;
+      }
+    },50);
+    
+    }, 10);
   }
 
   enviarForm(form) {
@@ -80,26 +127,26 @@ export class InicioComponent implements OnInit {
       url: 'https://pruebasneuro.co/N-1074/api/wp-content/themes/enigma/contacto/form-contacto.php',
       type: 'POST',
       data: JSON.stringify(this.user),
-      dataType:"json",
-      success: function(data) {
-       
-      }, error: function(error){
-        if(error.status === 200){
+      dataType: "json",
+      success: function (data) {
+
+      }, error: function (error) {
+        if (error.status === 200) {
           Swal.fire({
             icon: 'success',
             title: 'Gracias por regalarnos tus datos. Nos comunicaremos contigo.',
             showConfirmButton: true
-          }); 
+          });
           //console.log(error);
-        form.reset();
+          form.reset();
         } else {
           Swal.fire('Oops...', 'Algo pasó. Corrige los errores, por favor!', 'error')
         }
       }
     });
-   }
+  }
 
-   openCity(evt, cityName) {
+  openCity(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -113,11 +160,11 @@ export class InicioComponent implements OnInit {
     evt.currentTarget.className += " active";
   }
 
-   public selectPill(index:number) {
+  public selectPill(index: number) {
     this.activePillIndex = index;
-   }
+  }
 
-   customOptions: OwlOptions = {
+  customOptions: OwlOptions = {
     // items: 3,
     loop: true,
     mouseDrag: true,
@@ -128,7 +175,7 @@ export class InicioComponent implements OnInit {
     dots: false,
     margin: 4,
     center: true,
-    
+
     // nav: true,
     // slideBy: 'page',
     // loop: true,
