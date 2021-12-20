@@ -498,12 +498,12 @@ footer ul{
     padding-inline-start: 0;
 }
 /*==============*/
-.owl-carousel{
+#carrusel_unico .owl-carousel{
     transform: rotate(90deg);
     width: 180px;
     margin-top:100px;
 } 
-.owl-item{
+#carrusel_unico .owl-item{
     display: flex;
     transform: rotate(-90deg) !important;
 }

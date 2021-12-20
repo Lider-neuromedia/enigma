@@ -53,7 +53,7 @@
           <ng-container *ngFor="let tab of data.soluciones">
             <div class="col-md-6">
               <img class="mb-4" src="{{ tab.logo_general }}" alt="SmartSuite">
-              <p [innerHTML]="tab.descripcion"></p>
+              <p [innerHTML]="tab.descripcion | safeHtml: 'html'"></p>
               <div class="nav flex-column nav-pills" id="services-tabs" role="tablist" aria-orientation="vertical">
                 <div class="row">
                   <div class="col-md-12 column2">
@@ -101,7 +101,7 @@
       <div class="row"  *ngIf="!loader">
         <div class="offset-md-2 col-md-8" *ngIf="data.nuestro_compromiso">
           <h2 class="mt-5 text-center text-black size35 font-weight-700 letter-spacing-056 line-height-46">{{ data.nuestro_compromiso.titulo }}</h2>
-          <p class="size18 text-center" [innerHTML]="data.nuestro_compromiso.descripcion"></p>
+          <p class="size18 text-center" [innerHTML]="data.nuestro_compromiso.descripcion | safeHtml: 'html'"></p>
         </div>
       </div>
     </div>
@@ -117,7 +117,7 @@
                   <img class="d-inline-block float-left img-fluid p-3" src="{{ iconos.icono }}" alt="Soluciones">
                 </div>
                 <div class="col-md-8 my-auto pl-0">
-                  <span class="size18 p-3 m-0 d-block" [innerHTML]="iconos.descripcion"></span>
+                  <span class="size18 p-3 m-0 d-block" [innerHTML]="iconos.descripcion | safeHtml: 'html'"></span>
                 </div>
               </div>
             </mat-card>
@@ -198,7 +198,7 @@
         </div>
         <div class="col-md-6 pt-3 pb-3">
           <h2 class="size38 font-weight-500 text-black line-height-41" [innerHTML]="data.resultados_agiles.titulo"></h2>
-          <p class="size18" [innerHTML]="data.resultados_agiles.descripcion"></p>
+          <p class="size18" [innerHTML]="data.resultados_agiles.descripcion | safeHtml: 'html'"></p>
         </div>
       </div>
     </div>
@@ -206,19 +206,21 @@
   <div class="seccion8 bg-soft-blue mt-35n pt-5 pb-50" *ngIf="!loader" >
     <div class="container" *ngIf="data.nuestros_clientes">
       <div class="row align-items-center justify-content-center">
-        <div class="col-md-4">
+        <div class="col-md-12">
           <h2 class="size38 font-weight-700 text-black">{{ data.nuestros_clientes.titulo }}</h2>
           <p class="size18" [innerHTML]="data.nuestros_clientes.descripcion | safeHtml: 'html'"></p>
         </div>
-        <div class="col-md-7 pt-4 pb-4">
-          <drag-scroll class="drag-scroll">
-              <ul id="scroll-cliente">
-                <ng-container *ngFor="let cliente of data.nuestros_clientes.clientes; let i = index">
-                  <li><img class="img-fluid" [src]="cliente.logo" alt="cliente-{{i}}"></li>
+        <div class="col-md-12 pt-4 pb-4">
+          <div class="container-fluid mt-5 pb-5" data-aos="fade-down-right" data-aos-anchor-placement="top-center" data-aos-duration="1000">
+            <owl-carousel-o [options]="customOptions2">
+                <ng-container *ngFor="let slide of data.nuestros_clientes.clientes; let i = index">
+                  <ng-template carouselSlide [id]="'clientes-'+i">
+                    <img [src]="slide.logo" [alt]="'clientes-'+i" title="clientes">
+                  </ng-template>
                 </ng-container>
-              </ul>
-          </drag-scroll>
-          <owl-carousel-o [options]="customOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']" class="containerImg">
+            </owl-carousel-o>
+        </div>
+          <owl-carousel-o [options]="customOptions" id="carrusel_unico" [carouselClasses]="['owl-theme', 'row', 'sliding']" class="containerImg d-flex justify-content-center">
             <ng-container *ngFor="let cliente of data.nuestros_clientes.clientes; let i = index" >
                 <ng-template carouselSlide id="cliente-{{i}}">
                   <img class="img-fluid" [src]="cliente.logo" alt="cliente-{{i}}">
@@ -247,13 +249,13 @@
           </ng-container>
         </div>
         <div class="col-md-6">
-          <form (ngSubmit)="enviarForm(formularioFoot)" #formularioFoot="ngForm" id="formulario-foot" class="foot-contact">
+          <form (ngSubmit)="enviarForm()" [formGroup]="formulario" id="formulario-foot" class="foot-contact">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-row pt-2 pb-2">
                   <label class="size16 text-soft-white" for="nombres">Nombres</label>
-                  <input type="text" class="form-control" id="nombres" name="nombres" #nombres="ngModel" [(ngModel)]="user.nombres" required>
-                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)">
+                  <input type="text" class="form-control" id="nombres" name="nombres" formControlName="nombres" >
+                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('nombres').invalid && (formulario.get('nombres').dirty || formulario.get('nombres').touched)">
                      Nombres es un campo requerido.
                   </small>
                 </div>
@@ -261,8 +263,8 @@
               <div class="col-md-6">
                 <div class="form-row pt-2 pb-2">
                   <label class="size16 text-soft-white" for="apellidos">Apellidos</label>
-                  <input type="text" class="form-control" id="apellidos" name="apellidos" #apellidos="ngModel" [(ngModel)]="user.apellidos" required>
-                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+                  <input type="text" class="form-control" id="apellidos" name="apellidos" formControlName="apellidos" >
+                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('apellidos').invalid && (formulario.get('apellidos').dirty || formulario.get('apellidos').touched)">
                     Apellidos es un campo requerido.
                   </small>
                 </div>
@@ -270,8 +272,8 @@
               <div class="col-md-6">
                 <div class="form-row pt-2 pb-2">
                   <label class="size16 text-soft-white" for="telefono">Número de Teléfono</label>
-                  <input type="tel" class="form-control" id="telefono" name="telefono" #telefono="ngModel" [(ngModel)]="user.telefono" pattern="^\d+$" required>
-                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+                  <input type="tel" class="form-control" id="telefono" name="telefono" formControlName="telefono" >
+                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('telefono').invalid && (formulario.get('telefono').dirty || formulario.get('telefono').touched)">
                       Ingrese un teléfono válido.
                   </small>
                 </div>
@@ -279,8 +281,8 @@
               <div class="col-md-6">
                 <div class="form-row pt-2 pb-2">
                   <label class="size16 text-soft-white" for="ciudad">Ciudad</label>
-                  <input type="text" class="form-control" id="ciudad" name="ciudad" #ciudad="ngModel" [(ngModel)]="user.ciudad" required>
-                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)">
+                  <input type="text" class="form-control" id="ciudad" name="ciudad" formControlName="ciudad">
+                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('ciudad').invalid && (formulario.get('ciudad').dirty || formulario.get('ciudad').touched)">
                     Ciudad es un campo requerido.
                   </small>
                 </div>
@@ -289,27 +291,27 @@
             
             <div class="form-row pt-2 pb-2">
                 <label class="size16 text-soft-white" for="email">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correo" name="correo" #correo="ngModel" [(ngModel)]="user.correo" correo="true" required>
-                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+                <input type="email" class="form-control" id="correo" name="correo" formControlName="correo" >
+                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('correo').invalid && (formulario.get('correo').dirty || formulario.get('correo').touched)">
                     Ingrese un correo electrónico válido.
                 </small>
             </div>
            
             <div class="form-row pt-2 pb-2">
                 <label class="size16 text-soft-white" for="mensaje">Mensaje</label>
-                <textarea class="form-control h-100px" id="mensaje" name="mensaje" placeholder="Escribe aquí tu mensaje" #mensaje="ngModel" [(ngModel)]="user.mensaje" required></textarea>
-                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="mensaje.invalid && (mensaje.dirty || mensaje.touched)">
+                <textarea class="form-control h-100px" id="mensaje" name="mensaje" placeholder="Escribe aquí tu mensaje" formControlName="mensaje" ></textarea>
+                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('mensaje').invalid && (formulario.get('mensaje').dirty || formulario.get('mensaje').touched)">
                     El mensaje es un campo requerido.
                   </small>
             </div>
             <div class="form-check text-center">
-                <input type="checkbox" name="acepto" #acepto="ngModel" [(ngModel)]="user.acepto" class="form-check-input" id="acepto" required>
+                <input type="checkbox" name="acepto" formControlName="acepto" class="form-check-input" id="acepto">
                 <label class="size16 text-soft-white" for="acepto">Conozco y acepto la política de datos</label>
-                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="acepto.invalid && (acepto.dirty || acepto.touched)">
+                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('acepto').invalid && (formulario.get('acepto').dirty || formulario.get('acepto').touched)">
                     Debe aceptar las condiciones.
                 </small>
             </div>
-            <button type="submit" mat-raised-button class="btn btn-sea-blue mt-4 w-40 mx-auto d-block pr-5 pl-5" name="enviar" value="Enviar" [disabled]="formularioFoot.invalid">
+            <button type="submit" mat-raised-button class="btn btn-sea-blue mt-4 w-40 mx-auto d-block pr-5 pl-5" name="enviar" value="Enviar" [disabled]="formulario.invalid">
               Enviar
             </button>
           </form>

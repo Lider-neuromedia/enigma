@@ -11,6 +11,8 @@ import { DragScrollComponent } from 'ngx-drag-scroll';
 import { ServicesService } from './../services/services.service';
 import { NgxTypedJsComponent } from 'ngx-typed-js';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { environment } from 'src/environments/environment';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare var $: any;
 declare var moverScroll: any;
@@ -37,7 +39,7 @@ export class SafeHtmlPipe implements PipeTransform {
   styleUrls: ['./inicio.component.css']
 })
 
-export class InicioComponent implements OnInit, OnDestroy {
+export class InicioComponent implements OnInit {
   public user: any;
 
   data: any = [];
@@ -51,8 +53,9 @@ export class InicioComponent implements OnInit, OnDestroy {
   scrollCliente: any;
   intervalo: NodeJS.Timeout;
   intervalo2: NodeJS.Timeout;
+  formulario: FormGroup;
 
-  constructor(private _sanitizer: DomSanitizer, private _homeservice: ServicesService, private common: CommonService) {
+  constructor(private _sanitizer: DomSanitizer, private _homeservice: ServicesService, private common: CommonService, private fb: FormBuilder) {
     this.user = {
       nombres: '',
       apellidos: '',
@@ -62,14 +65,19 @@ export class InicioComponent implements OnInit, OnDestroy {
       mensaje: '',
       acepto: ''
     };
+    this.crearFormulario();
   }
-  ngOnDestroy(): void {
-    if(this.intervalo){
-      clearInterval(this.intervalo);
-    }
-    if(this.intervalo2){
-      clearInterval(this.intervalo2);
-    }
+
+  crearFormulario(){
+    this.formulario = this.fb.group({
+      nombres: ['', Validators.required],
+      apellidos: ['', Validators.required],
+      telefono: ['', Validators.required],
+      ciudad: ['', Validators.required],
+      correo: ['', Validators.required],
+      mensaje: ['', Validators.required],
+      acepto: ['', Validators.required]
+    })
   }
 
   urlSinProcesar = "//www.youtube.com/embed/5xX5-MXipGw?rel=0";
@@ -86,45 +94,27 @@ export class InicioComponent implements OnInit, OnDestroy {
         this.data = this._sanitizer.bypassSecurityTrustHtml(res);
         this.data = this.data.changingThisBreaksApplicationSecurity;
         this.data_typed = this.data.banner.typed;
-        moverScroll();
       });
   }
-  resetScroll() {
-      this.scrollCliente.scrollTop = this.valorScroll = 0;
-      if(this.intervalo){
-        clearInterval(this.intervalo);
-      }
-      if(this.intervalo2){
-        clearInterval(this.intervalo2);
-      }
-  }
 
-  temporizadorScroll(){
-    let validarScroll: boolean = false;
-    $('.drag-scroll-content').attr('id', 'scroll-cliente');
-    setTimeout(() => {
-      this.scrollCliente = document.getElementById("scroll-cliente");
-    this.intervalo = setInterval(() => {
-        this.scrollCliente.scrollTop = this.valorScroll;
-      if(!validarScroll){
-        this.valorScroll++    
-      }else{
-        this.valorScroll--;
-      }
-      if(this.valorScroll === 950){
-        validarScroll = true;
-      }
-      if(this.valorScroll === 0){
-        validarScroll = false;
-      }
-    },50);
-    
-    }, 10);
-  }
 
-  enviarForm(form) {
+  enviarForm() {
+    if(this.formulario.invalid && !this.formulario.get('acepto').value){
+      return Object.values( this.formulario.controls ).forEach(control => {
+        control.markAsTouched();
+      })
+    }
+    if(this.formulario.invalid){
+      return Object.values( this.formulario.controls ).forEach(control => {
+        control.markAsTouched();
+      })
+    }
+    if(!this.formulario.get('acepto').value){
+      alert('Debes aceptar Terminos y condiciones');
+      return;
+    }
     $.ajax({
-      url: 'https://pruebasneuro.co/N-1074/api/wp-content/themes/enigma/contacto/form-contacto.php',
+      url: `${environment.domain}/wp-content/themes/enigma/contacto/form-contacto.php`,
       type: 'POST',
       data: JSON.stringify(this.user),
       dataType: "json",
@@ -137,13 +127,12 @@ export class InicioComponent implements OnInit, OnDestroy {
             title: 'Gracias por regalarnos tus datos. Nos comunicaremos contigo.',
             showConfirmButton: true
           });
-          //console.log(error);
-          form.reset();
         } else {
           Swal.fire('Oops...', 'Algo pasó. Corrige los errores, por favor!', 'error')
         }
       }
     });
+    this.formulario.reset();
   }
 
   openCity(evt, cityName) {
@@ -165,7 +154,6 @@ export class InicioComponent implements OnInit, OnDestroy {
   }
 
   customOptions: OwlOptions = {
-    // items: 3,
     loop: true,
     mouseDrag: true,
     touchDrag: false,
@@ -176,15 +164,6 @@ export class InicioComponent implements OnInit, OnDestroy {
     margin: 4,
     center: true,
 
-    // nav: true,
-    // slideBy: 'page',
-    // loop: true,
-    // mouseDrag: false,
-    // touchDrag: false,
-    // pullDrag: false,
-    // dots: false,
-    // navSpeed: 700,
-    // navText: ['', ''],
     responsive: {
       0: {
         items: 1
@@ -199,7 +178,34 @@ export class InicioComponent implements OnInit, OnDestroy {
         items: 4
       }
     },
-    // nav: true
+  }
+  customOptions2: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    autoplay: true,
+    slideTransition: 'linear',
+    autoplaySpeed: 1000,
+    smartSpeed: 1000,
+    navSpeed: 1000,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 8
+      }
+    },
+    nav: false
   }
 
 }

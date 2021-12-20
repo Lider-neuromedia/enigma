@@ -10,6 +10,19 @@ import { existsSync } from 'fs';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
+  const domino = require("domino");
+  const fs = require("fs");
+  const path = require("path");
+  const templateA = fs
+    .readFileSync(path.join("dist/Enigma/browser", "index.html"))
+    .toString();
+  const win = domino.createWindow(templateA);
+  win.Object = Object;
+  win.Math = Math;
+  
+  global["window"] = win;
+  global["document"] = win.document;
+  
   const server = express();
   const distFolder = join(process.cwd(), 'dist/Enigma/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';

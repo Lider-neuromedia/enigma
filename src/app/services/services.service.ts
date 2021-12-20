@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { GLOBAL } from './global';
 import { map, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class ServicesService {
   public urlMenu: string;
 
   constructor(private _http: HttpClient) {
-    this.url = GLOBAL.url;
-    this.urlMenu = GLOBAL.urlMenu;
+    this.url = environment.url;
+    this.urlMenu = environment.urlMenu;
   }
 
   getHome(): Observable<any>{
