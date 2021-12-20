@@ -541,6 +541,101 @@ footer ul{
     color: #f90600;
     transition: .5s ease-in-out;
 }
+.btn-mobileforms{
+    margin-top: 25px;
+    background-image: radial-gradient(57.99% 83.98%,#5ED35E 0,#7ce67c 100%);
+    color: #fff;
+    box-shadow: 0 3px 1px -2px #0003, 0 2px 2px 0 #00000024, 0 1px 5px 0 #0000001f;
+    border: 1px solid #5ED35E!important;
+    padding: 8px 35px!important;
+    transition: .5s ease-in-out;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    display: block;
+    width: 40%;
+    margin: 20px auto;
+}
+.btn-mobileforms:hover{
+    background: transparent;
+    color: #5ED35E;
+    transition: .5s ease-in-out;
+}
+.btn-onecheck{
+    margin-top: 25px;
+    background-image: radial-gradient(57.99% 83.98%,#E5A603 0,#FAE101 100%);
+    color: #fff;
+    box-shadow: 0 3px 1px -2px #0003, 0 2px 2px 0 #00000024, 0 1px 5px 0 #0000001f;
+    border: 1px solid #E5A603!important;
+    padding: 8px 35px!important;
+    transition: .5s ease-in-out;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    display: block;
+    width: 40%;
+    margin: 20px auto;
+}
+.btn-onecheck:hover{
+    background: transparent;
+    color: #E5A603;
+    transition: .5s ease-in-out;
+}
+.btn-ontime{
+    margin-top: 25px;
+    background-image: radial-gradient(57.99% 83.98%,#E0431F 0,#FC7500 100%);
+    color: #fff;
+    box-shadow: 0 3px 1px -2px #0003, 0 2px 2px 0 #00000024, 0 1px 5px 0 #0000001f;
+    border: 1px solid #E0431F!important;
+    padding: 8px 35px!important;
+    transition: .5s ease-in-out;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    display: block;
+    width: 40%;
+    margin: 20px auto;
+}
+.btn-ontime:hover{
+    background: transparent;
+    color: #E0431F;
+    transition: .5s ease-in-out;
+}
+.btn-caretask{
+    margin-top: 25px;
+    background-image: radial-gradient(57.99% 83.98%,#36E0FC 0,#A6E9FB 100%);
+    color: #fff;
+    box-shadow: 0 3px 1px -2px #0003, 0 2px 2px 0 #00000024, 0 1px 5px 0 #0000001f;
+    border: 1px solid #36E0FC!important;
+    padding: 8px 35px!important;
+    transition: .5s ease-in-out;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    display: block;
+    width: 40%;
+    margin: 20px auto;
+}
+.btn-caretask:hover{
+    background: transparent;
+    color: #36E0FC;
+    transition: .5s ease-in-out;
+}
+.btn-intrack{
+    margin-top: 25px;
+    background-image: radial-gradient(57.99% 83.98%,#CC138D 0,#F83472 100%);
+    color: #fff;
+    box-shadow: 0 3px 1px -2px #0003, 0 2px 2px 0 #00000024, 0 1px 5px 0 #0000001f;
+    border: 1px solid #CC138D!important;
+    padding: 8px 35px!important;
+    transition: .5s ease-in-out;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    display: block;
+    width: 40%;
+    margin: 20px auto;
+}
+.btn-intrack:hover{
+    background: transparent;
+    color: #CC138D;
+    transition: .5s ease-in-out;
+}
 @media (min-width: 320px){
     .item-video{
         height: 310%;

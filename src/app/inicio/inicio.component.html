@@ -73,7 +73,24 @@
                   <div class="tab-pane fade" [ngClass]="{'active show': i === activePillIndex}" id="{{i}}" role="tabpanel" aria-labelledby="{{i}}">
                     <img class="img-fluid" src="{{ linkTab.imagen }}">
                     <p class="text-center">
-                      <a class="btn-smartsale" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
+                      <ng-container *ngIf="i === 0">
+                        <a class="btn-smartsale" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
+                      </ng-container>
+                      <ng-container *ngIf="i === 1">
+                        <a class="btn-mobileforms" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
+                      </ng-container>
+                      <ng-container *ngIf="i === 2">
+                        <a class="btn-onecheck" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
+                      </ng-container>
+                      <ng-container *ngIf="i === 3">
+                        <a class="btn-ontime" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
+                      </ng-container>
+                      <ng-container *ngIf="i === 4">
+                        <a class="btn-caretask" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
+                      </ng-container>
+                      <ng-container *ngIf="i === 5">
+                        <a class="btn-intrack" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
+                      </ng-container>
                     </p>
                   </div>
                 </ng-container>
