@@ -223,13 +223,13 @@
   <div class="seccion8 bg-soft-blue mt-35n pt-5 pb-50" *ngIf="!loader" >
     <div class="container" *ngIf="data.nuestros_clientes">
       <div class="row align-items-center justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-12 text-center">
           <h2 class="size38 font-weight-700 text-black">{{ data.nuestros_clientes.titulo }}</h2>
           <p class="size18" [innerHTML]="data.nuestros_clientes.descripcion | safeHtml: 'html'"></p>
         </div>
         <div class="col-md-12 pt-4 pb-4">
           <div class="container-fluid mt-5 pb-5" data-aos="fade-down-right" data-aos-anchor-placement="top-center" data-aos-duration="1000">
-            <owl-carousel-o [options]="customOptions2">
+            <owl-carousel-o [options]="customOptions">
                 <ng-container *ngFor="let slide of data.nuestros_clientes.clientes; let i = index">
                   <ng-template carouselSlide [id]="'clientes-'+i">
                     <img [src]="slide.logo" [alt]="'clientes-'+i" title="clientes">
@@ -237,13 +237,6 @@
                 </ng-container>
             </owl-carousel-o>
         </div>
-          <owl-carousel-o [options]="customOptions" id="carrusel_unico" [carouselClasses]="['owl-theme', 'row', 'sliding']" class="containerImg d-flex justify-content-center">
-            <ng-container *ngFor="let cliente of data.nuestros_clientes.clientes; let i = index" >
-                <ng-template carouselSlide id="cliente-{{i}}">
-                  <img class="img-fluid" [src]="cliente.logo" alt="cliente-{{i}}">
-                </ng-template>
-            </ng-container>
-          </owl-carousel-o>
         </div>
       </div>
     </div>

@@ -94,6 +94,7 @@ export class InicioComponent implements OnInit {
         this.data = this._sanitizer.bypassSecurityTrustHtml(res);
         this.data = this.data.changingThisBreaksApplicationSecurity;
         this.data_typed = this.data.banner.typed;
+        console.log(this.data);
       });
   }
 
@@ -116,7 +117,7 @@ export class InicioComponent implements OnInit {
     $.ajax({
       url: `${environment.domain}/wp-content/themes/enigma/contacto/form-contacto.php`,
       type: 'POST',
-      data: JSON.stringify(this.user),
+      data: this.formulario.value,
       dataType: "json",
       success: function (data) {
 
@@ -179,33 +180,4 @@ export class InicioComponent implements OnInit {
       }
     },
   }
-  customOptions2: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: false,
-    autoplay: true,
-    slideTransition: 'linear',
-    autoplaySpeed: 1000,
-    smartSpeed: 1000,
-    navSpeed: 1000,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 8
-      }
-    },
-    nav: false
-  }
-
 }
