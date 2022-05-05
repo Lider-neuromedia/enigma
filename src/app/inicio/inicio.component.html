@@ -1,43 +1,97 @@
 <div class="enigma">
-  <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'500px' }"></ngx-skeleton-loader>
+  <ngx-skeleton-loader
+    count="1"
+    *ngIf="loader"
+    animation="progress"
+    [theme]="{ height: '500px' }"
+  ></ngx-skeleton-loader>
   <ng-container *ngIf="data.banner">
-    <div *ngIf="!loader" class="enigma-background seccion1" >
-      <div *ngIf="data.banner.imagen" style="background-image: url('{{ data.banner.imagen }}')">
+    <div *ngIf="!loader" class="enigma-background seccion1">
+      <div
+        *ngIf="data.banner.imagen"
+        style="background-image: url('{{ data.banner.imagen }}')"
+      >
         <!-- <div class="embed-responsive embed-responsive-16by9">
           <span class="embed-responsive-item" [innerHTML]="data.banner.video | safeHtml: 'html'"></span>
         </div> -->
       </div>
       <div *ngIf="!data.banner.imagen">
-        <video onloadedmetadata="this.muted=true" oncanplay="this.play()" class="item-video" width="100%" height="635" autoplay controls loop muted>
-          <source src="{{data.banner.video}}" type="video/mp4">
+        <video
+          onloadedmetadata="this.muted=true"
+          oncanplay="this.play()"
+          class="item-video"
+          width="100%"
+          height="635"
+          autoplay
+          controls
+          loop
+          muted
+        >
+          <source src="{{ data.banner.video }}" type="video/mp4" />
           Browser not supported
         </video>
       </div>
-      <div *ngIf="!data.banner.imagen" class="container container-info-banner" style="position: absolute;z-index: 1;overflow: hidden;top: 0;transform: translate(-50%, 50%);margin-right: 50%;margin-left: 50%;">
-          <div class="row d-flex justify-content-center info-banner">
-              <p class="text-white">{{ data.banner.titulo }}</p>
-              <ngx-typed-js class="text-white text-center font-weight-700 w-100 line-height-1" [strings]="[data.banner.typed.texto1,data.banner.typed.texto2,data.banner.typed.texto3, data.banner.typed.texto4]" 
-                            [shuffle]="false" 
-                            [typeSpeed]="60"
-                            [backSpeed]="20"
-                            [loop]="true"
-                            [autoInsertCss]="true"
-                            [backDelay]="500">
-                            <p class="typing"></p>
-              </ngx-typed-js>
-              <p class="text-white letter-spacing-056 text-center w-50 mt-1">{{ data.banner.descripcion }}</p>
-          </div>
+      <div
+        *ngIf="!data.banner.imagen"
+        class="container container-info-banner"
+        style="
+          position: absolute;
+          z-index: 1;
+          overflow: hidden;
+          top: 0;
+          transform: translate(-50%, 50%);
+          margin-right: 50%;
+          margin-left: 50%;
+        "
+      >
+        <div class="row d-flex justify-content-center info-banner">
+          <p class="text-white">{{ data.banner.titulo }}</p>
+          <ngx-typed-js
+            class="text-white text-center font-weight-700 w-100 line-height-1"
+            [strings]="[
+              data.banner.typed.texto1,
+              data.banner.typed.texto2,
+              data.banner.typed.texto3,
+              data.banner.typed.texto4
+            ]"
+            [shuffle]="false"
+            [typeSpeed]="60"
+            [backSpeed]="20"
+            [loop]="true"
+            [autoInsertCss]="true"
+            [backDelay]="500"
+          >
+            <p class="typing"></p>
+          </ngx-typed-js>
+          <p class="text-white letter-spacing-056 text-center w-50 mt-1">
+            {{ data.banner.descripcion }}
+          </p>
+        </div>
       </div>
     </div>
   </ng-container>
   <div class="container seccion2">
-    <ngx-skeleton-loader class="d-flex pt-3 pb-5" count="4" *ngIf="loader" animation="progress" appearance="circle" [theme]="{ 'width':'100%','height':'250px','border-radius': '10px' }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      class="d-flex pt-3 pb-5"
+      count="4"
+      *ngIf="loader"
+      animation="progress"
+      appearance="circle"
+      [theme]="{ width: '100%', height: '250px', 'border-radius': '10px' }"
+    ></ngx-skeleton-loader>
     <div class="row pt-5 pb-5" *ngIf="!loader">
       <ng-container *ngFor="let metrica of data.metricas">
         <div class="col-md-3" *ngIf="metrica.titulo">
-          <mat-card class="card-zoom mt-3 mb-3" >
-            <img class="d-inline-block mb-3" src="{{ metrica.icono }}" alt="Apps desarrolladas">
-            <mat-card-title class="text-black pt-2 pb-2 roboto size25 font-weight-700">{{metrica.titulo}}</mat-card-title>
+          <mat-card class="card-zoom mt-3 mb-3">
+            <img
+              class="d-inline-block mb-3"
+              src="{{ metrica.icono }}"
+              alt="Apps desarrolladas"
+            />
+            <mat-card-title
+              class="text-black pt-2 pb-2 roboto size25 font-weight-700"
+              >{{ metrica.titulo }}</mat-card-title
+            >
             <mat-card-content>
               <span [innerHtml]="metrica.descripcion | safeHtml: 'html'"></span>
             </mat-card-content>
@@ -47,151 +101,322 @@
     </div>
   </div>
   <div id="smartsuite" class="seccion3 bg-soft-blue pt-3 pb-3 mt-3">
-    <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'500px' }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      count="1"
+      *ngIf="loader"
+      animation="progress"
+      [theme]="{ height: '500px' }"
+    ></ngx-skeleton-loader>
     <div class="container" *ngIf="data.soluciones">
-        <div class="row align-items-center pt-5 pb-5" *ngIf="!loader">
-          <ng-container *ngFor="let tab of data.soluciones">
-            <div class="col-md-6">
-              <img class="mb-4" src="{{ tab.logo_general }}" alt="SmartSuite">
-              <p [innerHTML]="tab.descripcion | safeHtml: 'html'"></p>
-              <div class="nav flex-column nav-pills" id="services-tabs" role="tablist" aria-orientation="vertical">
-                <div class="row">
-                  <div class="col-md-12 column2">
-                    <ng-container *ngFor="let linkTab of tab.soluciones_tabs; let i = index">
-                      <!-- <a onmouseover="openCity(event, i)" class="nav-link fade" [ngClass]="{'active show': i === activePillIndex}" id="{{i}}-tab" data-toggle="pill" [attr.href]="'#'+'v-pills-'+i" role="tab" aria-controls="{{i}}" aria-selected="true"> -->
-                      <a class="nav-link fade" [ngClass]="{'active show': i === activePillIndex}" id="{{i}}-tab" data-toggle="pill" [attr.href]="'#'+'v-pills-'+i" role="tab" aria-controls="{{i}}" aria-selected="true">
-                        <img src="{{ linkTab.logo }}" (click)="selectPill(i)">
-                      </a>
-                    </ng-container>
-                  </div>
+      <div class="row align-items-center pt-5 pb-5" *ngIf="!loader">
+        <ng-container *ngFor="let tab of data.soluciones">
+          <div class="col-md-6">
+            <img class="mb-4" src="{{ tab.logo_general }}" alt="SmartSuite" />
+            <p [innerHTML]="tab.descripcion | safeHtml: 'html'"></p>
+            <div
+              class="nav flex-column nav-pills"
+              id="services-tabs"
+              role="tablist"
+              aria-orientation="vertical"
+            >
+              <div class="row">
+                <div class="col-md-12 column2">
+                  <ng-container
+                    *ngFor="let linkTab of tab.soluciones_tabs; let i = index"
+                  >
+                    <!-- <a onmouseover="openCity(event, i)" class="nav-link fade" [ngClass]="{'active show': i === activePillIndex}" id="{{i}}-tab" data-toggle="pill" [attr.href]="'#'+'v-pills-'+i" role="tab" aria-controls="{{i}}" aria-selected="true"> -->
+                    <a
+                      class="nav-link fade"
+                      [ngClass]="{ 'active show': i === activePillIndex }"
+                      id="{{ i }}-tab"
+                      data-toggle="pill"
+                      [attr.href]="'#' + 'v-pills-' + i"
+                      role="tab"
+                      aria-controls="{{ i }}"
+                      aria-selected="true"
+                    >
+                      <img src="{{ linkTab.logo }}" (click)="selectPill(i)" />
+                    </a>
+                  </ng-container>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="tab-content" id="services-tabContent">
-                <ng-container *ngFor="let linkTab of tab.soluciones_tabs; let i = index">
-                  <div class="tab-pane fade" [ngClass]="{'active show': i === activePillIndex}" id="{{i}}" role="tabpanel" aria-labelledby="{{i}}">
-                    <img class="img-fluid" src="{{ linkTab.imagen }}">
-                    <p class="text-center">
-                      <ng-container *ngIf="i === 0">
-                        <a class="btn-smartsale" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
-                      </ng-container>
-                      <ng-container *ngIf="i === 1">
-                        <a class="btn-mobileforms" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
-                      </ng-container>
-                      <ng-container *ngIf="i === 2">
-                        <a class="btn-onecheck" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
-                      </ng-container>
-                      <ng-container *ngIf="i === 3">
-                        <a class="btn-ontime" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
-                      </ng-container>
-                      <ng-container *ngIf="i === 4">
-                        <a class="btn-caretask" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
-                      </ng-container>
-                      <ng-container *ngIf="i === 5">
-                        <a class="btn-intrack" [href]="linkTab.url " target="blank_">Comenzar ahora</a>
-                      </ng-container>
-                    </p>
-                  </div>
-                </ng-container>
-              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="tab-content" id="services-tabContent">
+              <ng-container
+                *ngFor="let linkTab of tab.soluciones_tabs; let i = index"
+              >
+                <div
+                  class="tab-pane fade"
+                  [ngClass]="{ 'active show': i === activePillIndex }"
+                  id="{{ i }}"
+                  role="tabpanel"
+                  aria-labelledby="{{ i }}"
+                >
+                  <img class="img-fluid" src="{{ linkTab.imagen }}" />
+                  <p class="text-center">
+                    <ng-container *ngIf="i === 0">
+                      <a
+                        class="btn-smartsale"
+                        [href]="linkTab.url"
+                        target="blank_"
+                        >Comenzar ahora</a
+                      >
+                    </ng-container>
+                    <ng-container *ngIf="i === 1">
+                      <a
+                        class="btn-mobileforms"
+                        [href]="linkTab.url"
+                        target="blank_"
+                        >Comenzar ahora</a
+                      >
+                    </ng-container>
+                    <ng-container *ngIf="i === 2">
+                      <a
+                        class="btn-onecheck"
+                        [href]="linkTab.url"
+                        target="blank_"
+                        >Comenzar ahora</a
+                      >
+                    </ng-container>
+                    <ng-container *ngIf="i === 3">
+                      <a class="btn-ontime" [href]="linkTab.url" target="blank_"
+                        >Comenzar ahora</a
+                      >
+                    </ng-container>
+                    <ng-container *ngIf="i === 4">
+                      <a
+                        class="btn-caretask"
+                        [href]="linkTab.url"
+                        target="blank_"
+                        >Comenzar ahora</a
+                      >
+                    </ng-container>
+                    <ng-container *ngIf="i === 5">
+                      <a
+                        class="btn-intrack"
+                        [href]="linkTab.url"
+                        target="blank_"
+                        >Comenzar ahora</a
+                      >
+                    </ng-container>
+                  </p>
+                </div>
+              </ng-container>
             </div>
-          </ng-container>
-        </div>
+          </div>
+        </ng-container>
+      </div>
     </div>
   </div>
   <div class="container mt-5">
-    <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'200px' }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      count="1"
+      *ngIf="loader"
+      animation="progress"
+      [theme]="{ height: '200px' }"
+    ></ngx-skeleton-loader>
     <div class="row" *ngIf="data.solucion_ideal">
       <div class="col-md-12" *ngIf="!loader">
-        <div class="seccion4 border-radius-12 text-center" style="background-image: url('{{ data.solucion_ideal.imagen_de_fondo }}')">
-          <p class="text-center size38 font-weight-700 text-white letter-spacing-056 line-height-46 mb-3">{{ data.solucion_ideal.titulo }}</p>
-          <a class="size18 btn-white" mat-raised-button [href]="data.solucion_ideal.url_del_boton">{{ data.solucion_ideal.texto_del_boton }}</a>
+        <div
+          class="seccion4 border-radius-12 text-center"
+          style="background-image: url('{{
+            data.solucion_ideal.imagen_de_fondo
+          }}')"
+        >
+          <p
+            class="text-center size38 font-weight-700 text-white letter-spacing-056 line-height-46 mb-3"
+          >
+            {{ data.solucion_ideal.titulo }}
+          </p>
+          <a
+            class="size18 btn-white"
+            mat-raised-button
+            [href]="data.solucion_ideal.url_del_boton"
+            >{{ data.solucion_ideal.texto_del_boton }}</a
+          >
           <!-- <button mat-raised-button class="btn-intrack-fill w-15 size18 border-radius-2 font-weight-400">Demo</button> -->
         </div>
       </div>
     </div>
   </div>
-    <div class="container mt-5 mb-0">
-      <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'200px' }"></ngx-skeleton-loader>
-      <ngx-skeleton-loader class="d-flex pt-3 pb-5" count="3" *ngIf="loader" animation="progress" appearance="circle" [theme]="{ 'width':'100%','height':'250px','border-radius': '10px' }"></ngx-skeleton-loader>
-      <div class="row"  *ngIf="!loader">
-        <div class="offset-md-2 col-md-8" *ngIf="data.nuestro_compromiso">
-          <h2 class="mt-5 text-center text-black size35 font-weight-700 letter-spacing-056 line-height-46">{{ data.nuestro_compromiso.titulo }}</h2>
-          <p class="size18 text-center" [innerHTML]="data.nuestro_compromiso.descripcion | safeHtml: 'html'"></p>
-        </div>
+  <div class="container mt-5 mb-0">
+    <ngx-skeleton-loader
+      count="1"
+      *ngIf="loader"
+      animation="progress"
+      [theme]="{ height: '200px' }"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      class="d-flex pt-3 pb-5"
+      count="3"
+      *ngIf="loader"
+      animation="progress"
+      appearance="circle"
+      [theme]="{ width: '100%', height: '250px', 'border-radius': '10px' }"
+    ></ngx-skeleton-loader>
+    <div class="row" *ngIf="!loader">
+      <div class="offset-md-2 col-md-8" *ngIf="data.nuestro_compromiso">
+        <h2
+          class="mt-5 text-center text-black size35 font-weight-700 letter-spacing-056 line-height-46"
+        >
+          {{ data.nuestro_compromiso.titulo }}
+        </h2>
+        <p
+          class="size18 text-center"
+          [innerHTML]="data.nuestro_compromiso.descripcion | safeHtml: 'html'"
+        ></p>
       </div>
     </div>
-    <div class="container pt-0">
-      <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'200px' }"></ngx-skeleton-loader>
-      <ngx-skeleton-loader class="d-flex pt-3 pb-5" count="2" *ngIf="loader" animation="progress" appearance="circle" [theme]="{ 'width':'100%','height':'250px','border-radius': '10px' }"></ngx-skeleton-loader>
-      <div class="row" *ngIf="data.nuestro_compromiso">
-        <ng-container *ngFor="let iconos of data.nuestro_compromiso.detalle_del_compromiso">
-          <div class="col-md-4 margintopN mt-3" *ngIf="!loader">
-            <mat-card class="solucion card-zoom">
-              <div class="row">
-                <div class="col-md-4">
-                  <img class="d-inline-block float-left img-fluid p-3" src="{{ iconos.icono }}" alt="Soluciones">
-                </div>
-                <div class="col-md-8 my-auto pl-0">
-                  <span class="size18 p-3 m-0 d-block" [innerHTML]="iconos.descripcion | safeHtml: 'html'"></span>
-                </div>
+  </div>
+  <div class="container pt-0">
+    <ngx-skeleton-loader
+      count="1"
+      *ngIf="loader"
+      animation="progress"
+      [theme]="{ height: '200px' }"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      class="d-flex pt-3 pb-5"
+      count="2"
+      *ngIf="loader"
+      animation="progress"
+      appearance="circle"
+      [theme]="{ width: '100%', height: '250px', 'border-radius': '10px' }"
+    ></ngx-skeleton-loader>
+    <div class="row" *ngIf="data.nuestro_compromiso">
+      <ng-container
+        *ngFor="let iconos of data.nuestro_compromiso.detalle_del_compromiso"
+      >
+        <div class="col-md-4 margintopN mt-3" *ngIf="!loader">
+          <mat-card class="solucion card-zoom">
+            <div class="row">
+              <div class="col-md-4">
+                <img
+                  class="d-inline-block float-left img-fluid p-3"
+                  src="{{ iconos.icono }}"
+                  alt="Soluciones"
+                />
               </div>
-            </mat-card>
-          </div>
-        </ng-container>
-      </div>
-      <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'200px' }"></ngx-skeleton-loader>
-      <div id="conocenos" class="row pt-5" *ngIf="data.hablemos">
-        <div class="col-md-12 text-center" *ngIf="!loader">
-          <h2 class="size38 font-weight-700 text-blue text-center mt-4">{{ data.hablemos.titulo }}</h2>
-          <a mat-raised-button class="size14 font-weight-400 btn-sea-blue pt-2 pb-2 pr-2 pl-2" href="{{ data.hablemos.url_boton }}" target="blank_">{{ data.hablemos.texto_boton }}</a>
-        </div>
-      </div>
-    </div>
-    <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" [theme]="{height:'400px' }"></ngx-skeleton-loader>
-    <div class="seccion5 container mt-5 mb-5" *ngIf="!loader">
-      <div class="row align-items-center" *ngIf="data.expertos">
-        <div class="col-md-12 mb-5">
-          <h2 class="text-black size34 line-height-41 font-weight-700 text-center">{{ data.expertos.titulo }}</h2>
-        </div>
-        <div class="col-md-6">
-          <span class="font-weight-400 size18 letter-spacing-027 text-black mb-4" [innerHTML]="data.expertos.descripcion | safeHtml: 'html'"></span>
-          <div class="row">
-            <ng-container *ngFor="let profesional of data.expertos.profesionales">
-              <div class="col-sm pb-3">
-                <div class="card-teams card-zoom">
-                  <img class="mx-auto d-block mb-3" src="{{ profesional.icono }}" alt="Contamos con todo un equipo de expertos que garantizan soluciones digitales personalizadas">
-                  <p class="text-center text-blue font-weight-500 size18 mb-0">{{ profesional.numero }}</p>
-                  <p class="text-center size16">{{ profesional.texto }}</p>
-                </div>
+              <div class="col-md-8 my-auto pl-0">
+                <span
+                  class="size18 p-3 m-0 d-block"
+                  [innerHTML]="iconos.descripcion | safeHtml: 'html'"
+                ></span>
               </div>
-            </ng-container>
-          </div>
+            </div>
+          </mat-card>
         </div>
-        <div class="col-md-6">
-          <div class="embed-responsive embed-responsive-4by3">
-            <p [innerHTML]="data.expertos.video | safeHtml: 'html'"></p>
-          </div>
-          <!-- <iframe width="100%" height="315" [src]="urlSaneada" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-        </div>
+      </ng-container>
+    </div>
+    <ngx-skeleton-loader
+      count="1"
+      *ngIf="loader"
+      animation="progress"
+      [theme]="{ height: '200px' }"
+    ></ngx-skeleton-loader>
+    <div id="conocenos" class="row pt-5" *ngIf="data.hablemos">
+      <div class="col-md-12 text-center" *ngIf="!loader">
+        <h2 class="size38 font-weight-700 text-blue text-center mt-4">
+          {{ data.hablemos.titulo }}
+        </h2>
+        <a
+          mat-raised-button
+          class="size14 font-weight-400 btn-sea-blue pt-2 pb-2 pr-2 pl-2"
+          href="{{ data.hablemos.url_boton }}"
+          target="blank_"
+          >{{ data.hablemos.texto_boton }}</a
+        >
       </div>
     </div>
+  </div>
+  <ngx-skeleton-loader
+    count="1"
+    *ngIf="loader"
+    animation="progress"
+    [theme]="{ height: '400px' }"
+  ></ngx-skeleton-loader>
+  <div class="seccion5 container mt-5 mb-5" *ngIf="!loader">
+    <div class="row align-items-center" *ngIf="data.expertos">
+      <div class="col-md-12 mb-5">
+        <h2
+          class="text-black size34 line-height-41 font-weight-700 text-center"
+        >
+          {{ data.expertos.titulo }}
+        </h2>
+      </div>
+      <div class="col-md-6">
+        <span
+          class="font-weight-400 size18 letter-spacing-027 text-black mb-4"
+          [innerHTML]="data.expertos.descripcion | safeHtml: 'html'"
+        ></span>
+        <div class="row">
+          <ng-container *ngFor="let profesional of data.expertos.profesionales">
+            <div class="col-sm pb-3">
+              <div class="card-teams card-zoom">
+                <img
+                  class="mx-auto d-block mb-3"
+                  src="{{ profesional.icono }}"
+                  alt="Contamos con todo un equipo de expertos que garantizan soluciones digitales personalizadas"
+                />
+                <p class="text-center text-blue font-weight-500 size18 mb-0">
+                  {{ profesional.numero }}
+                </p>
+                <p class="text-center size16">{{ profesional.texto }}</p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="embed-responsive embed-responsive-4by3">
+          <p [innerHTML]="data.expertos.video | safeHtml: 'html'"></p>
+        </div>
+        <!-- <iframe width="100%" height="315" [src]="urlSaneada" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+      </div>
+    </div>
+  </div>
   <div class="seccion6 bg-soft-blue mt-150" *ngIf="!loader">
     <div class="container">
       <div class="row align-items-center" *ngIf="data.aplicaciones_moviles">
         <div class="col-md-6">
-          <img class="img-fluid img-aplicaciones" [src]="data.aplicaciones_moviles.imagen" alt="Aplicaciones móviles">
+          <img
+            class="img-fluid img-aplicaciones"
+            [src]="data.aplicaciones_moviles.imagen"
+            alt="Aplicaciones móviles"
+          />
         </div>
         <div class="col-md-6 pb-3 pt-3">
           <div class="img-apps mb-4">
-            <img [src]="data.aplicaciones_moviles.icono" alt="Apps móviles" style="background:#EAB9DF;padding:12px 25px;border-radius:5px;box-shadow: 0 2px 4px 0 rgba(124, 141, 170, 0.4);">
+            <img
+              [src]="data.aplicaciones_moviles.icono"
+              alt="Apps móviles"
+              style="
+                background: #eab9df;
+                padding: 12px 25px;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px 0 rgba(124, 141, 170, 0.4);
+              "
+            />
           </div>
-          <h2 class="size38 font-weight-700 text-blue mb-4">{{ data.aplicaciones_moviles.titulo }}</h2>
-          <p class="size18 font-weight-400" [innerHTML]="data.aplicaciones_moviles.descripcion | safeHtml: 'html'"></p>
+          <h2 class="size38 font-weight-700 text-blue mb-4">
+            {{ data.aplicaciones_moviles.titulo }}
+          </h2>
+          <p
+            class="size18 font-weight-400"
+            [innerHTML]="
+              data.aplicaciones_moviles.descripcion | safeHtml: 'html'
+            "
+          ></p>
           <div class="banderas">
-            <ng-container *ngFor="let bandera of data.aplicaciones_moviles.banderas">
-              <img class="img-fluid d-inline-block card-zoom" [src]="bandera.imagen">
+            <ng-container
+              *ngFor="let bandera of data.aplicaciones_moviles.banderas"
+            >
+              <img
+                class="img-fluid d-inline-block card-zoom"
+                [src]="bandera.imagen"
+              />
             </ng-container>
           </div>
         </div>
@@ -200,43 +425,104 @@
   </div>
   <div class="seccion7 pt-3 pb-3 mt-150" *ngIf="!loader">
     <div class="container">
-      <div class="row align-items-center mb-50" *ngIf="data.siempre_a_tu_alcance">
+      <div
+        class="row align-items-center mb-50"
+        *ngIf="data.siempre_a_tu_alcance"
+      >
         <div class="col-md-6 pt-3 pb-3">
-            <h2 class="size38 font-weight-500 text-black line-height-41" [innerHTML]="data.siempre_a_tu_alcance.titulo | safeHtml: 'html'" style="width:80%"></h2>
-            <p class="size18" [innerHTML]="data.siempre_a_tu_alcance.descripcion | safeHtml: 'html'"></p>
+          <h2
+            class="size38 font-weight-500 text-black line-height-41"
+            [innerHTML]="data.siempre_a_tu_alcance.titulo | safeHtml: 'html'"
+            style="width: 80%"
+          ></h2>
+          <p
+            class="size18"
+            [innerHTML]="
+              data.siempre_a_tu_alcance.descripcion | safeHtml: 'html'
+            "
+          ></p>
         </div>
         <div class="col-md-6">
-          <img class="img-fluid" [src]="data.siempre_a_tu_alcance.imagen" alt="Alcance">
+          <img
+            class="img-fluid"
+            [src]="data.siempre_a_tu_alcance.imagen"
+            alt="Alcance"
+          />
         </div>
       </div>
       <div class="row align-items-center" *ngIf="data.resultados_agiles">
         <div class="col-md-6">
-          <img class="img-fluid" [src]="data.resultados_agiles.imagen" alt="Soluciones">
+          <img
+            class="img-fluid"
+            [src]="data.resultados_agiles.imagen"
+            alt="Soluciones"
+          />
         </div>
         <div class="col-md-6 pt-3 pb-3">
-          <h2 class="size38 font-weight-500 text-black line-height-41" [innerHTML]="data.resultados_agiles.titulo"></h2>
-          <p class="size18" [innerHTML]="data.resultados_agiles.descripcion | safeHtml: 'html'"></p>
+          <h2
+            class="size38 font-weight-500 text-black line-height-41"
+            [innerHTML]="data.resultados_agiles.titulo"
+          ></h2>
+          <p
+            class="size18"
+            [innerHTML]="data.resultados_agiles.descripcion | safeHtml: 'html'"
+          ></p>
         </div>
       </div>
     </div>
   </div>
-  <div class="seccion8 bg-soft-blue mt-35n pt-5 pb-50" *ngIf="!loader" >
+  <div class="seccion8 bg-soft-blue mt-35n pt-5 pb-50" *ngIf="!loader">
     <div class="container" *ngIf="data.nuestros_clientes">
       <div class="row align-items-center justify-content-center">
         <div class="col-md-12 text-center">
-          <h2 class="size38 font-weight-700 text-black">{{ data.nuestros_clientes.titulo }}</h2>
-          <p class="size18" [innerHTML]="data.nuestros_clientes.descripcion | safeHtml: 'html'"></p>
+          <h2 class="size38 font-weight-700 text-black">
+            {{ data.nuestros_clientes.titulo }}
+          </h2>
+          <p
+            class="size18"
+            [innerHTML]="data.nuestros_clientes.descripcion | safeHtml: 'html'"
+          ></p>
         </div>
         <div class="col-md-12 pt-4 pb-4">
-          <div class="container-fluid mt-5 pb-5" data-aos="fade-down-right" data-aos-anchor-placement="top-center" data-aos-duration="1000">
-            <owl-carousel-o [options]="customOptions">
+          <div
+            class="container-fluid mt-5 pb-5"
+            data-aos="fade-down-right"
+            data-aos-anchor-placement="top-center"
+            data-aos-duration="1000"
+          >
+            <div
+              class="d-flex flex-wrap justify-content-center"
+              style="gap: 13px"
+            >
+              <ng-container
+                *ngFor="
+                  let slide of data.nuestros_clientes.clientes;
+                  let i = index
+                "
+              >
+                <div
+                  class="bg-white rounded grayscale"
+                  style="
+                    width: 150px;
+                    height: 150px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                  "
+                  [id]="'cliente' + i + 1"
+                  [ngStyle]="{ 'background-image': 'url(' + slide.logo + ')' }"
+                  (mouseenter)="colocarColor('cliente' + i + 1)"
+                  (mouseleave)="colocarColor('cliente' + i + 1)"
+                ></div>
+              </ng-container>
+            </div>
+            <!-- <owl-carousel-o [options]="customOptions">
                 <ng-container *ngFor="let slide of data.nuestros_clientes.clientes; let i = index">
                   <ng-template carouselSlide [id]="'clientes-'+i">
                     <img [src]="slide.logo" [alt]="'clientes-'+i" title="clientes">
                   </ng-template>
                 </ng-container>
-            </owl-carousel-o>
-        </div>
+            </owl-carousel-o> -->
+          </div>
         </div>
       </div>
     </div>
@@ -245,83 +531,248 @@
     <div class="container" *ngIf="data.datos_de_contacto">
       <div class="row">
         <div class="col-md-6">
-          <h2 class="text-white size35 font-weight-700 line-height-45 letter-spacing-1-03">{{ data.datos_de_contacto.titulo }}</h2>
-          <ng-container *ngFor="let contacto of data.datos_de_contacto.informacion">
+          <h2
+            class="text-white size35 font-weight-700 line-height-45 letter-spacing-1-03"
+          >
+            {{ data.datos_de_contacto.titulo }}
+          </h2>
+          <ng-container
+            *ngFor="let contacto of data.datos_de_contacto.informacion"
+          >
             <div class="row mb-2">
               <div class="col-md-1">
-                <img [src]="contacto.icono">
+                <img [src]="contacto.icono" />
               </div>
               <div class="col-md-11">
-                <h3 class="mb-0 text-white font-weight-700 size18 letter-spacing-053 line-height-22">{{ contacto.titulo }}</h3>
-                <p class="text-white size16 line-height-20" [innerHTML]="contacto.descripcion | safeHtml: 'html'">
+                <h3
+                  class="mb-0 text-white font-weight-700 size18 letter-spacing-053 line-height-22"
+                >
+                  {{ contacto.titulo }}
+                </h3>
+                <p
+                  class="text-white size16 line-height-20"
+                  [innerHTML]="contacto.descripcion | safeHtml: 'html'"
+                ></p>
               </div>
             </div>
           </ng-container>
         </div>
         <div class="col-md-6">
-          <form (ngSubmit)="enviarForm()" [formGroup]="formulario" id="formulario-foot" class="foot-contact">
+          <form
+            (ngSubmit)="enviarForm()"
+            [formGroup]="formulario"
+            id="formulario-foot"
+            class="foot-contact"
+          >
             <div class="row">
               <div class="col-md-6">
                 <div class="form-row pt-2 pb-2">
-                  <label class="size16 text-soft-white" for="nombres">Nombres</label>
-                  <input type="text" class="form-control" id="nombres" name="nombres" formControlName="nombres" >
-                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('nombres').invalid && (formulario.get('nombres').dirty || formulario.get('nombres').touched)">
-                     Nombres es un campo requerido.
+                  <label class="size16 text-soft-white" for="nombres"
+                    >Nombres</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nombres"
+                    name="nombres"
+                    formControlName="nombres"
+                  />
+                  <small
+                    style="
+                      color: #fff;
+                      background: #c30000;
+                      padding: 2px 5px;
+                      margin-top: 5px;
+                    "
+                    *ngIf="
+                      formulario.get('nombres').invalid &&
+                      (formulario.get('nombres').dirty ||
+                        formulario.get('nombres').touched)
+                    "
+                  >
+                    Nombres es un campo requerido.
                   </small>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-row pt-2 pb-2">
-                  <label class="size16 text-soft-white" for="apellidos">Apellidos</label>
-                  <input type="text" class="form-control" id="apellidos" name="apellidos" formControlName="apellidos" >
-                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('apellidos').invalid && (formulario.get('apellidos').dirty || formulario.get('apellidos').touched)">
+                  <label class="size16 text-soft-white" for="apellidos"
+                    >Apellidos</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="apellidos"
+                    name="apellidos"
+                    formControlName="apellidos"
+                  />
+                  <small
+                    style="
+                      color: #fff;
+                      background: #c30000;
+                      padding: 2px 5px;
+                      margin-top: 5px;
+                    "
+                    *ngIf="
+                      formulario.get('apellidos').invalid &&
+                      (formulario.get('apellidos').dirty ||
+                        formulario.get('apellidos').touched)
+                    "
+                  >
                     Apellidos es un campo requerido.
                   </small>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-row pt-2 pb-2">
-                  <label class="size16 text-soft-white" for="telefono">Número de Teléfono</label>
-                  <input type="tel" class="form-control" id="telefono" name="telefono" formControlName="telefono" >
-                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('telefono').invalid && (formulario.get('telefono').dirty || formulario.get('telefono').touched)">
-                      Ingrese un teléfono válido.
+                  <label class="size16 text-soft-white" for="telefono"
+                    >Número de Teléfono</label
+                  >
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="telefono"
+                    name="telefono"
+                    formControlName="telefono"
+                  />
+                  <small
+                    style="
+                      color: #fff;
+                      background: #c30000;
+                      padding: 2px 5px;
+                      margin-top: 5px;
+                    "
+                    *ngIf="
+                      formulario.get('telefono').invalid &&
+                      (formulario.get('telefono').dirty ||
+                        formulario.get('telefono').touched)
+                    "
+                  >
+                    Ingrese un teléfono válido.
                   </small>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-row pt-2 pb-2">
-                  <label class="size16 text-soft-white" for="ciudad">Ciudad</label>
-                  <input type="text" class="form-control" id="ciudad" name="ciudad" formControlName="ciudad">
-                  <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('ciudad').invalid && (formulario.get('ciudad').dirty || formulario.get('ciudad').touched)">
+                  <label class="size16 text-soft-white" for="ciudad"
+                    >Ciudad</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="ciudad"
+                    name="ciudad"
+                    formControlName="ciudad"
+                  />
+                  <small
+                    style="
+                      color: #fff;
+                      background: #c30000;
+                      padding: 2px 5px;
+                      margin-top: 5px;
+                    "
+                    *ngIf="
+                      formulario.get('ciudad').invalid &&
+                      (formulario.get('ciudad').dirty ||
+                        formulario.get('ciudad').touched)
+                    "
+                  >
                     Ciudad es un campo requerido.
                   </small>
                 </div>
               </div>
             </div>
-            
+
             <div class="form-row pt-2 pb-2">
-                <label class="size16 text-soft-white" for="email">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correo" name="correo" formControlName="correo" >
-                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('correo').invalid && (formulario.get('correo').dirty || formulario.get('correo').touched)">
-                    Ingrese un correo electrónico válido.
-                </small>
+              <label class="size16 text-soft-white" for="email"
+                >Correo Electrónico</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="correo"
+                name="correo"
+                formControlName="correo"
+              />
+              <small
+                style="
+                  color: #fff;
+                  background: #c30000;
+                  padding: 2px 5px;
+                  margin-top: 5px;
+                "
+                *ngIf="
+                  formulario.get('correo').invalid &&
+                  (formulario.get('correo').dirty ||
+                    formulario.get('correo').touched)
+                "
+              >
+                Ingrese un correo electrónico válido.
+              </small>
             </div>
-           
+
             <div class="form-row pt-2 pb-2">
-                <label class="size16 text-soft-white" for="mensaje">Mensaje</label>
-                <textarea class="form-control h-100px" id="mensaje" name="mensaje" placeholder="Escribe aquí tu mensaje" formControlName="mensaje" ></textarea>
-                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('mensaje').invalid && (formulario.get('mensaje').dirty || formulario.get('mensaje').touched)">
-                    El mensaje es un campo requerido.
-                  </small>
+              <label class="size16 text-soft-white" for="mensaje"
+                >Mensaje</label
+              >
+              <textarea
+                class="form-control h-100px"
+                id="mensaje"
+                name="mensaje"
+                placeholder="Escribe aquí tu mensaje"
+                formControlName="mensaje"
+              ></textarea>
+              <small
+                style="
+                  color: #fff;
+                  background: #c30000;
+                  padding: 2px 5px;
+                  margin-top: 5px;
+                "
+                *ngIf="
+                  formulario.get('mensaje').invalid &&
+                  (formulario.get('mensaje').dirty ||
+                    formulario.get('mensaje').touched)
+                "
+              >
+                El mensaje es un campo requerido.
+              </small>
             </div>
             <div class="form-check text-center">
-                <input type="checkbox" name="acepto" formControlName="acepto" class="form-check-input" id="acepto">
-                <label class="size16 text-soft-white" for="acepto">Conozco y acepto la política de datos</label>
-                <small style="color: #fff;background: #c30000;padding: 2px 5px;margin-top: 5px;" *ngIf="formulario.get('acepto').invalid && (formulario.get('acepto').dirty || formulario.get('acepto').touched)">
-                    Debe aceptar las condiciones.
-                </small>
+              <input
+                type="checkbox"
+                name="acepto"
+                formControlName="acepto"
+                class="form-check-input"
+                id="acepto"
+              />
+              <label class="size16 text-soft-white" for="acepto"
+                >Conozco y acepto la política de datos</label
+              >
+              <small
+                style="
+                  color: #fff;
+                  background: #c30000;
+                  padding: 2px 5px;
+                  margin-top: 5px;
+                "
+                *ngIf="
+                  formulario.get('acepto').invalid &&
+                  (formulario.get('acepto').dirty ||
+                    formulario.get('acepto').touched)
+                "
+              >
+                Debe aceptar las condiciones.
+              </small>
             </div>
-            <button type="submit" mat-raised-button class="btn btn-sea-blue mt-4 w-40 mx-auto d-block pr-5 pl-5" name="enviar" value="Enviar" [disabled]="formulario.invalid">
+            <button
+              type="submit"
+              mat-raised-button
+              class="btn btn-sea-blue mt-4 w-40 mx-auto d-block pr-5 pl-5"
+              name="enviar"
+              value="Enviar"
+              [disabled]="formulario.invalid"
+            >
               Enviar
             </button>
           </form>

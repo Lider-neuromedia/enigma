@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { APP_ROUTING } from './app.routing';
@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 
 import { InicioComponent, SafeHtmlPipe } from './inicio/inicio.component';
@@ -34,10 +33,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatSidenavModule,
     MatCardModule,
-    FormsModule,     
-    ReactiveFormsModule, 
+    FormsModule,
+    ReactiveFormsModule,
     DragScrollModule,
     NgxSkeletonLoaderModule,
     NgxTypedJsModule,
@@ -45,6 +43,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     APP_ROUTING,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

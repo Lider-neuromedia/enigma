@@ -1,0 +1,9 @@
+.grayscale {
+    filter: grayscale(1);
+    opacity: 0.5;
+  }
+  .colorCliente {
+    filter: grayscale(0);
+    opacity: 1;
+    transition: 0.5s ease all;
+  }
